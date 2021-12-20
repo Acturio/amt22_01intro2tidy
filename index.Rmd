@@ -1,0 +1,65 @@
+--- 
+title: Introducción a Ciencia de Datos con R (Tidyverse)
+author:
+  - Karina Lizette Gamboa Puente
+  - Oscar Arturo Bringas López
+institute: "AMAT"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Curso de aprendizaje de programación de R para Ciencia de Datos con Tidyverse"
+always_allow_html: true
+
+---
+
+
+# BIENVENIDA 
+
+## Objetivo
+
+Escribir objetivo
+
+
+## ¿Quienes somos? 
+
+**ACT. ARTURO BRINGAS** 
+
+Actuario, egresado de la Facultad de Ciencias y Maestría en Ciencia de Datos, ITAM. 
+Experiencia en el Departamento de Investigación Aplicada y Opinión de la UNAM diseñando metodologías estadísticas para estudios de percepción social. Consultor para empresas y organizaciones como GNP, CBX, El Universal, INEGI, UNAM e IZZI.  Actualmente  se desempeña en diferentes proyectos contribuyendo a empresas en temas de ciencia de datos, estadística, programación, visualización de datos y análisis geoespacial.
+
+
+```{r echo=FALSE,fig.align='center'}
+knitr::include_graphics("img/arturo.png")
+```
+
+
+**ACT. LIZETTE GAMBOA** 
+
+Actuaria, egresada de la Facultad de Ciencias, UNAM, Maestría en Ciencia de Datos, ITAM. 
+Experiencia en áreas de analítica predictiva, e inteligencia del negocio, Lead Data Scientist en consultoría en diferentes proyectos con empresas de tecnología, retail y del sector asegurador y financiero. Experta en entendimiento de negocio para la correcta implementación de algoritmos de inteligencia y explotación de datos. Consultoras actuales: CLOSTER y RakenDataGroup. Experiencia en GNP, Activer Banco y Casa de Bolsa, PlayCity Casinos, entre otros. 
+
+```{r echo=FALSE,fig.align='center'}
+knitr::include_graphics("img/lizzy.png")
+```
+
+<div class="watermark"><img src="img/header.png" width="400"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

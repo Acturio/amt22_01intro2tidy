@@ -1,0 +1,5 @@
+book_filename: 'Introducción a Ciencia de Datos con R (Tidyverse)'
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Capítulo "
