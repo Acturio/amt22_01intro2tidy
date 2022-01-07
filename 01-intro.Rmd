@@ -1,0 +1,53 @@
+# Introducción
+
+## ¿Qué es *R*?
+
+R (R Core Team 2018) es un entorno y lenguaje de programación que permite el análisis estadístico de información y reportes gráficos. Es ampliamente usado en investigación por la comunidad estadística en campos como la biomedicina, minería de datos, matemáticas financieras, entre otros. Ha ganado mucha popularidad en los últimos años al ser un software libre que está en constante crecimiento por las aportaciones de otros usuarios y que permite la interacción con software estadísticos como STATA, SAS, SPSS, etc.. R permite la incorporación de librerías y paqueterías con funcionalidades específicas, por lo que es un lenguaje de programación muy completo y fácil de usar.
+
+
+## ¿Cómo obtener *R*?
+
+R puede ser fácilmente descargado de forma gratuita desde el sitio oficial [http://www.r-project.org/](http://www.r-project.org/). R está disponible para las plataformas Windows, Mac y Linux.
+
+
+## ¿Qué es RStudio?
+
+*RStudio* es un Entorno de Desarrollo Integrado (IDE, por sus siglas en inglés) para R. Este permite y facilita el desarrollo y ejecución de sintaxis para código en *R*, incluye una consola y proporciona herramientas para la gestión del espacio de trabajo. *RStudio* está disponible para Windows, Mac y Linux o para navegadores conectados a RStudio Server o RStudio Server Pro.
+
+Algunas de las principales características de Rstudio que lo hacen una gran herramienta para trabajar en R, son:
+
++ Auto completado de código
++ Sangría inteligente
++ Resaltado de sintaxis
++ Facilidad para definir funciones
++ Soporte integrado
++ Documentación integrada
++ Administración de directorios y proyectos
++ Visor de datos
++ Depurador interactivo para corregir errores
++ Conección con Rmarkwon y Sweave
+
+La siguiente imagen muestra la forma en la que está estructurado RStudio. El orden de los páneles puede ser elegido por el usuario, así como las características de tipo de letra, tamaño y color de fondo, entre otras características.
+
+```{r, echo = F, out.width = "800px", out.height="450px", fig.align = "center", fig.cap= "Páneles de trabajo de Rstudio"}
+knitr::include_graphics("img/01-intro/rstudio3.png")
+```
+
+## *R* como lenguaje orientado a objetos
+
+*R* es un lenguaje de programación orientado a objetos (POO). En (López 2011, pag. 5) se define a los objetos y sus características como “cualquier cosa con significado para el problema que se trata de resolver”. A partir de esa definición, se puede decir que sirve para representar alguna entidad de la vida real, por lo general son componentes del problema que se pretende resolver y con los que podemos interactuar. A través de esta interacción y del estudio que se haga de ellos, es posible clasificarlos en grupos de acuerdo a sus caractrerísticas. A partir de los objetos con los que se trabaje, surgirán las clases adecuadas para encontrar la solución a un problema dado.
+
+Los objetos tienen características fundamentales que permiten identificarlos, conocerlos y entender su comportamiento. De acuerdo con (Schildt 2009), estas características son:
+
+1. Identidad
+2. Comportamiento
+3. Estructura
+
+* **Identidad:** Esta es la propiedad que da nombre a cada uno de los objetos y que permite declararlos, distinguirlos de manera única, usarlos y llamarlos para la representación de su contenido.
+
+* **Comportamiento:** Esta es la propiedad que determina las operaciones que puede realizar el objeto, es decir, permite conocer las capacidades y alcances de la funcionalidad de cada objeto. El comportamiento permite conocer la interacción que puede existir con otros objetos y los resultrados que generarán.
+
+* **Estructura:** El estado se refiere a un conjunto de características o atributos específicos del objeto dados en un momento determinado, y que pueden cambiar en un instante de tiempo.
+
+
+
