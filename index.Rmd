@@ -27,7 +27,7 @@ Escribir objetivo
 **ACT. ARTURO BRINGAS** 
 
 Actuario, egresado de la Facultad de Ciencias y Maestría en Ciencia de Datos, ITAM. 
-Experiencia en el Departamento de Investigación Aplicada y Opinión de la UNAM diseñando metodologías estadísticas para estudios de percepción social. Consultor para empresas y organizaciones como GNP, CBX, El Universal, INEGI, UNAM e IZZI.  Actualmente  se desempeña en diferentes proyectos contribuyendo a empresas en temas de ciencia de datos, estadística, programación, visualización de datos y análisis geoespacial.
+Experiencia en el Departamento de Investigación Aplicada y Opinión de la UNAM diseñando metodologías estadísticas para estudios de percepción social. Consultor para empresas y organizaciones como UNODC, GNP, CBX, El Universal, INEGI, UNAM e IZZI.  Actualmente  se desempeña en diferentes proyectos contribuyendo a empresas en temas de ciencia de datos, estadística, series de tiempo, visualización de datos y análisis geoespacial.
 
 
 ```{r echo=FALSE,fig.align='center'}

@@ -35,7 +35,7 @@ knitr::include_graphics("img/01-intro/rstudio3.png")
 
 ## *R* como lenguaje orientado a objetos
 
-*R* es un lenguaje de programación orientado a objetos (POO). En (López 2011, pag. 5) se define a los objetos y sus características como “cualquier cosa con significado para el problema que se trata de resolver”. A partir de esa definición, se puede decir que sirve para representar alguna entidad de la vida real, por lo general son componentes del problema que se pretende resolver y con los que podemos interactuar. A través de esta interacción y del estudio que se haga de ellos, es posible clasificarlos en grupos de acuerdo a sus caractrerísticas. A partir de los objetos con los que se trabaje, surgirán las clases adecuadas para encontrar la solución a un problema dado.
+*R* es un lenguaje de programación orientado a objetos (POO). (López 2011, pag. 5) define a los objetos y sus características como “cualquier cosa con significado para el problema que se trata de resolver”. A partir de esa definición, se puede decir que sirve para representar alguna entidad de la vida real, por lo general son componentes del problema que se pretende resolver y con los que podemos interactuar. A través de esta interacción y del estudio que se haga de ellos, es posible clasificarlos en grupos de acuerdo a sus caractrerísticas. A partir de los objetos con los que se trabaje, surgirán las clases adecuadas para encontrar la solución a un problema dado.
 
 Los objetos tienen características fundamentales que permiten identificarlos, conocerlos y entender su comportamiento. De acuerdo con (Schildt 2009), estas características son:
 
@@ -49,5 +49,123 @@ Los objetos tienen características fundamentales que permiten identificarlos, c
 
 * **Estructura:** El estado se refiere a un conjunto de características o atributos específicos del objeto dados en un momento determinado, y que pueden cambiar en un instante de tiempo.
 
+En la programación orientada a objetos, un programa recolecta muchos objetos para ser tratado como un conjunto dinámico de objetos interactuando entre sí. Los objetos están definidos por:
 
+1. **Atributos:** Son las propiedades o características de los datos contenidos en un objeto. Los valores asociados a un objeto en un momento determinado del tiempo determinan su estado.
 
+2. **Métodos:** Acceden a los atributos de los objetos y determinan el comportamiento de los datos contenidos.
+
+### Clases
+
+R posee 5 clases de objetos básicas o atómicas integradas. A partir de la combinación de ellas, se construyen todas las demás. Estas clases atómicas son:
+
+1. Character (caracteres)
+2. Numeric (números reales)
+3. Integer (números enteros)
+4. Complex (números complejos)
+5. Logical (valores lógicos verdadero y falso)
+
+En R, todo es un objeto, por lo que es posible acceder a sus características a través de funciones predefinidas en la librería básica. Por ejemplo:
+
+```{R}
+class("Hola mundo")
+
+class(10.5)
+
+class(integer(10))
+
+class(10 + 1i)
+
+class(TRUE)
+```
+
+### Creación de objetos
+
+Los objetos pueden ser guardados a través del operador '<-' ó '=', anteponiendo al operador un nombre que servirá como el identificador del objeto:
+
+```{R}
+Mi_primer_objeto <- 10
+Nombre_identificador <- "Objeto de clase caracter"
+```
+
+Es posible acceder al contenido de un objeto al mandarlo llamar mediante su identificador, esto se logra escribiendo en la consola la función 'print()', incluyendo entre paréntesis el nombre del objeto a imprimir, o bien, escribiendo en la consola directamente el nombre del objeto y automáticamente imprimirá su contenido, como se ve a continuación:
+
+```{R}
+print(Mi_primer_objeto)
+
+Nombre_identificador
+```
+
+Para almacenar conjuntos de datos en R, es posible hacerlo de distintas formas, la más básica y sencilla es a través de un vector. Utilizando la función 'c()' e introduciendo los objetos a almacenar separándolos por comas entre sí. La característica fundamental de los vectores es que almacenan información de la misma clase. A continuación se muestran dos ejemplos con distinta clase cada uno.
+
+```{R}
+vector_numerico <- c(1,2,3,4,5,6)
+print(vector_numerico)
+
+vector_caracter <- c("este", "es", "un", "vector", "de", "caracteres")
+print(vector_caracter)
+```
+
+En caso de que se introduzcan objetos de diferentes clases, R convertirá la clase de los objetos de tal forma que todos puedan ser representados por la misma clase, por ejemplo:
+
+```{R}
+c(1,2,3,4,"cinco")    # Los números son representados como caracteres
+
+c(TRUE, 2, FALSE)     # True y False se convierten en los números 1 y 0 respectivamente
+
+c(TRUE, F, 1, "dos")  # Todos los objetos son convertidos a caracteres
+```
+
+Para acceder al i-ésimo elemento de un vector se usa un índice que determina su posición exacta dentro del vector. Este índice debe incluirse entre corchetes inmediatamente después del nombre del vector. Hay que tomar en cuenta que, a diferencia de otros lenguajes de programación, en R la numeración de los índices comienza desde 1, por lo que si se desea acceder al cuarto elemento o al conjunto de elementos 1,4,5,6, se deberá escribir de la siguiente forma:
+
+```{R}
+vector_caracter[4]
+
+vector_caracter[c(1,4,5,6)]
+```
+
+En caso de que se desee almacenar elementos con diferente tipo de clase, es posible hacerlo mediante la implementación de "listas". Las listas dividen en secciones los elementos de diferentes clases. Para poder acceder a dichas secciones, se usa el nombre de la sección o índice entre doble corchete. Por ejemplo:
+
+```{R}
+Mi_lista <- list()
+Mi_lista[[1]] <- c(1,2,3,4,5)
+Mi_lista[['Segunda entrada']] <- c(T,T,F,T,F,F)
+Mi_lista[[3]] <- c('Hay', 3, 'objetos almacenados')
+print(Mi_lista)
+```
+
+Para acceder a la j-ésima sección, se debe especificar entre doble corchete el índice o nombre de la sección deseada. Si se desea acceder al i-ésimo elemento de la j-ésima sección, deberá ser especificada la sección y posteriormente el i-ésimo elemnto a extraer.
+
+```{R}
+Mi_lista[[1]]           # Extracción completa de la primera sección.
+
+Mi_lista[[1]][3]        # Extracción del tercer elemento de la primera sección.
+
+Mi_lista[[2]][c(2,3,4)] # Extracción de los elemntos 2,3 y 4 de la segunda sección.
+
+Mi_lista[[3]][3]
+```
+
+Para almacenar grandes conjuntos de información conformados por distintos vectores, es común recurrir a los objetos de la clase 'data.frame'. La estructura de dichos objectos está conformada por dos dimensiones (renglones y columnas). Dicha estructura se usa principalmente para capturar diferentes características de sujetos o elementos, los renglones son las observaciones o los distintos sujetos y las columnas se usan para capturar cada una de las características del sujeto u observación.
+
+Esta estructura suele ser trabajada de dos formas principales, la primera es construyéndose desde dentro del código conforme se va generando la información, ó bien la segunda, leyendo datos de manera externa.
+El primer método requiere de la concatenación de 2 o más vectores de la misma dimensión. Los elementos a concatenar se pasan como parámetros de la función cbind.data.frame() ó rbind.data.frame(), dependiendo de si se desean concatenar como renglones o como columnas. A continuación se verá un ejemplo:
+
+```{R}
+vector1<- c("a","b","c","d","e")
+vector2<- c(1,2,3,4,5)
+vector3<- c(T,F,T,F,T)
+
+dataframe1<-cbind.data.frame(vector1,vector2,vector3)
+colnames(dataframe1)<- c("Columna 1","Columna 2","Columna 3")
+dataframe1
+
+class(dataframe1)
+
+dataframe2 <-rbind.data.frame(vector1,vector2,vector3)
+colnames(dataframe2)<-c("Columna 1","Columna 2","Columna 3", "Columna 4","Columna 5")
+dataframe2
+
+class(dataframe2)
+
+```
