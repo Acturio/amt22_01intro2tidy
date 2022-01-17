@@ -224,6 +224,7 @@ ejemplo_groupby<- iris %>%
   mutate(Suma=Sepal.Length+Sepal.Width) %>%
   group_by(Species) %>%
   summarise(Media_Suma=mean(Suma))
+
 ejemplo_groupby
 ```
 
