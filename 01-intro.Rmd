@@ -1,4 +1,16 @@
-# Introducción
+# Introducción a Ciencia de Datos
+
+## Ciencia de Datos
+
+### Objetivo de la Ciencia de Datos
+
+### ¿Qué se requiere para hacer Ciencia de Datos?
+
+## Aplicaciones de Ciencia de Datos
+
+### Tipos de problemas que se pueden resolver
+
+### Tipos de algoritmos y aprendizaje
 
 ## ¿Qué es *R*?
 
