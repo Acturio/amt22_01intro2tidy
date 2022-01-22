@@ -26,8 +26,10 @@ Escribir objetivo
 
 **ACT. ARTURO BRINGAS** 
 
+[LinkedIn](https://www.linkedin.com/in/arturo-bringas/)
+
 Actuario, egresado de la Facultad de Ciencias y Maestría en Ciencia de Datos, ITAM. 
-Experiencia en el Departamento de Investigación Aplicada y Opinión de la UNAM diseñando metodologías estadísticas para estudios de percepción social. Consultor para empresas y organizaciones como UNODC, GNP, CBX, El Universal, INEGI, UNAM e IZZI.  Actualmente  se desempeña en diferentes proyectos contribuyendo a empresas en temas de ciencia de datos, estadística, series de tiempo, visualización de datos y análisis geoespacial.
+Experiencia en modelos predictivos y de clasificación de machine learning aplicado a seguros, deportes y movilidad internacional. Jefe de departamento en Investigación Aplicada y Opinión de la UNAM, donde realiza estudios estadísticos de percepción social. Consultor para empresas y organizaciones como UNODC, GNP, CBX, El Universal, INEGI, UNAM, IZZI. Actualmente se desempeña en diferentes proyectos en consultorías como Sinnia, Geek-end y DDI contribuyendo a empresas en temas de ciencia de datos, estadística, visualización de datos y análisis geoespacial.
 
 
 ```{r echo=FALSE,fig.align='center'}
@@ -37,12 +39,17 @@ knitr::include_graphics("img/arturo.png")
 
 **ACT. LIZETTE GAMBOA** 
 
-Actuaria, egresada de la Facultad de Ciencias, UNAM, Maestría en Ciencia de Datos, ITAM. 
-Experiencia en áreas de analítica predictiva, e inteligencia del negocio, Lead Data Scientist en consultoría en diferentes proyectos con empresas de tecnología, retail y del sector asegurador y financiero. Experta en entendimiento de negocio para la correcta implementación de algoritmos de inteligencia y explotación de datos. Consultoras actuales: CLOSTER y RakenDataGroup. Experiencia en GNP, Activer Banco y Casa de Bolsa, PlayCity Casinos, entre otros. 
+[LinkedIn](https://www.linkedin.com/in/kalizzygam/)
+
+Actuaria, egresada de la Facultad de Ciencias, UNAM, Maestría en Ciencia de Datos, ITAM. Experiencia en áreas de analítica predictiva, e inteligencia del negocio, Lead y Senior Data Scientist en consultoría en diferentes proyectos con empresas de tecnología, retail y del sector asegurador y financiero. Experta en entendimiento de negocio para la correcta implementación de algoritmos de inteligencia y explotación de datos. Actividad actual: Analytics Architect en Merama y Senior Data Science en CLOSTER Experiencia en GNP, Activer Banco y Casa de Bolsa, PlayCity Casinos, RakenDataGroup Consulting. entre otros.
 
 ```{r echo=FALSE,fig.align='center'}
 knitr::include_graphics("img/lizzy.png")
 ```
+
+## Estructura del curso
+
+
 
 <div class="watermark"><img src="img/header.png" width="400"></div>
 
