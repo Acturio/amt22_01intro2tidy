@@ -19,7 +19,7 @@ always_allow_html: true
 
 ## Objetivo
 
-Escribir objetivo
+Brindar al participante los elementos teóricos y prácticos básicos alrededor de la Ciencia de Datos. Aprenderá a distinguir las diferentes soluciones a problemas que pueden resolverse con algoritmos de machine learning y aprenderá a usar el conjunto de librerías en *R* más novedoso, estructurado y ampliamente usado para la manipulación, transformación y visualización de datos: *"TIDYVERSE"*. 
 
 
 ## ¿Quienes somos? 
@@ -41,7 +41,8 @@ knitr::include_graphics("img/arturo.png")
 
 [LinkedIn](https://www.linkedin.com/in/kalizzygam/)
 
-Actuaria, egresada de la Facultad de Ciencias, UNAM, Maestría en Ciencia de Datos, ITAM. Experiencia en áreas de analítica predictiva, e inteligencia del negocio, Lead y Senior Data Scientist en consultoría en diferentes proyectos con empresas de tecnología, retail y del sector asegurador y financiero. Experta en entendimiento de negocio para la correcta implementación de algoritmos de inteligencia y explotación de datos. Actividad actual: Analytics Architect en Merama y Senior Data Science en CLOSTER Experiencia en GNP, Activer Banco y Casa de Bolsa, PlayCity Casinos, RakenDataGroup Consulting. entre otros.
+Actuaria, egresada de la Facultad de Ciencias, UNAM, Maestría en Ciencia de Datos, ITAM. Experiencia en áreas de analítica predictiva e inteligencia del negocio. Lead y Senior Data Scientist en consultoría en diferentes proyectos con empresas de tecnología, retail y del sector asegurador, financiero y bancario. Experta en entendimiento de negocio para la correcta implementación de algoritmos de inteligencia y explotación de datos. Actualmente se desarrolla como Analytics Architect en Merama, Senior Data Science en CLOSTER y profesora de cursos de ciencia de datos en AMAT.
+Empresas anteriores: GNP, Activer Banco y Casa de Bolsa, PlayCity Casinos, RakenDataGroup Consulting. entre otros.
 
 ```{r echo=FALSE,fig.align='center'}
 knitr::include_graphics("img/lizzy.png")
@@ -49,6 +50,60 @@ knitr::include_graphics("img/lizzy.png")
 
 ## Estructura del curso
 
+### Alcances del curso
+
+Al finalizar este curso el participante será capaz de consumir, manipular y visualizar información proveniente de diversas fuentes de información para resolver problemas de propósito general asociados a los datos. Este curso brindará las bases para introducirse a cualquiera de los cursos de Ciencia de datos que se imparten en AMAT: 
+
+1. Data Science & Machine Learning (Aprendizaje supervisado I)
+
+2. Data Science & Machine Learning (Aprendizaje no supervisado)
+
+Requisitos: Computadora con al menos 4Gb Ram 
+
+**Temario:**
+
+* Introducción a Ciencia de Datos
+  * ¿Qué es Ciencia de Datos?
+  * Objetivo de la ciencia de datos
+  * ¿Qué se requiere para hacer ciencia de datos?
+  * Tipos de problemas que se pueden resolver 
+  * Tipos de algoritmos y aprendizaje
+
+
+* Transformación y manipulación de estructuras de datos
+  * Importación
+  * Lectura 
+  * Consultas 
+  * Transformación de estructura
+
+
+* Manipulación de texto
+  * Concatenación
+  * Expresiones regulares
+  * Extracción
+
+
+* Manipulación de fechas y horas
+  * Creación de datos temporales
+  * Transformación de datos temporales
+  * Operaciones con datos temporales
+
+
+* Análisis exploratorio y visualización interactiva de datos
+  * EDA
+  * GEDA
+  * Uso, decisión e implementación de técnicas gráficas
+  * Visualización interactiva
+
+## Duración y evaluación del curso
+
+* El programa anterior tiene una duración de 24 hrs.
+
+* Las clases serán impartidas los días sábado, de 9:00 am a 1:00 pm 
+
+* Serán asignados ejercicios que el participante deberá resolver entre una semana y otra.
+
+* Al final del curso se solicitará un proyecto final, el cual deberá ser entregado para ser acreedor a la constancia de participación.
 
 
 <div class="watermark"><img src="img/header.png" width="400"></div>
