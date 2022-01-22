@@ -27,28 +27,38 @@ Brindar al participante los elementos teóricos y prácticos básicos alrededor 
 **ACT. ARTURO BRINGAS** 
 
 [LinkedIn](https://www.linkedin.com/in/arturo-bringas/)
+Email: act.arturo.b@ciencias.unam.mx
 
 Actuario, egresado de la Facultad de Ciencias y Maestría en Ciencia de Datos, ITAM. 
 Experiencia en modelos predictivos y de clasificación de machine learning aplicado a seguros, deportes y movilidad internacional. Jefe de departamento en Investigación Aplicada y Opinión de la UNAM, donde realiza estudios estadísticos de percepción social. Consultor para empresas y organizaciones como UNODC, GNP, CBX, El Universal, INEGI, UNAM, IZZI. Actualmente se desempeña en diferentes proyectos en consultorías como Sinnia, Geek-end y DDI contribuyendo a empresas en temas de ciencia de datos, estadística, visualización de datos y análisis geoespacial.
 
 
 ```{r echo=FALSE,fig.align='center'}
-knitr::include_graphics("img/arturo.png")
+knitr::include_graphics("img/00-presentacion/arturo.png")
 ```
 
 
 **ACT. LIZETTE GAMBOA** 
 
 [LinkedIn](https://www.linkedin.com/in/kalizzygam/)
+Email: lizzygamboa@ciencias.unam.mx
 
 Actuaria, egresada de la Facultad de Ciencias, UNAM, Maestría en Ciencia de Datos, ITAM. Experiencia en áreas de analítica predictiva e inteligencia del negocio. Lead y Senior Data Scientist en consultoría en diferentes proyectos con empresas de tecnología, retail y del sector asegurador, financiero y bancario. Experta en entendimiento de negocio para la correcta implementación de algoritmos de inteligencia y explotación de datos. Actualmente se desarrolla como Analytics Architect en Merama, Senior Data Science en CLOSTER y profesora de cursos de ciencia de datos en AMAT.
-Empresas anteriores: GNP, Activer Banco y Casa de Bolsa, PlayCity Casinos, RakenDataGroup Consulting. entre otros.
+Empresas anteriores: GNP, Activer Banco y Casa de Bolsa, PlayCity Casinos, RakenDataGroup Consulting, entre otros.
 
 ```{r echo=FALSE,fig.align='center'}
-knitr::include_graphics("img/lizzy.png")
+knitr::include_graphics("img/00-presentacion/lizzy.png")
 ```
 
-## Estructura del curso
+## Ciencia de Datos en R
+
+```{r echo=FALSE,fig.align='center'}
+knitr::include_graphics("img/00-presentacion/DataScienceVerse.png")
+```
+ 
+
+
+## Estructura del curso actual
 
 ### Alcances del curso
 
@@ -109,6 +119,29 @@ Requisitos: Computadora con al menos 4Gb Ram
 * Serán asignados ejercicios que el participante deberá resolver entre una semana y otra.
 
 * Al final del curso se solicitará un proyecto final, el cual deberá ser entregado para ser acreedor a la constancia de participación.
+
+
+## Recursos y dinámica de clase
+
+En esta clase estaremos usando: 
+
+* R [da click aquí si aún no lo descargas](https://cran.r-project.org/)
+* RStudio [da click aquí también](https://www.rstudio.com/products/rstudio/download/)
+* Miro [úsame](https://miro.com/welcomeonboard/WXJiSGtOUnE4Mm1EQnJaQWxIR2R6RGxPaVo5eXQ3bG1SMHNWSkVIZ09YQ3JlTHRma1dYcFJzbm9wZ05OVmxVMXwzMDc0NDU3MzU1MzI0OTQwMDI5?invite_link_id=632956861297)
+* Zoom [Clases](https://us02web.zoom.us/j/5155440751?pwd=YzJCOGF0VnlZdlZlS0Fpc3MvZEhadz09)
+  - Pulgar arriba: Voy bien, estoy entendiendo! 
+  - Pulgar abajo: Eso no quedó muy claro
+  - Mano arriba: Quiero participar/preguntar ó Ya estoy listo para iniciar 
+* Grupo de WhatsApp [El chismecito está aquí](https://chat.whatsapp.com/CNv5RxZb7FnLbzUFHGtYMG)
+* Posible Drive [Aún no hay documentos, no seas avorazado :D ]()
+* Notas de clase [Revisame si quieres aprender](KaLizzyGam.github.io/index.html) 
+
+
+ 
+
+
+
+
 
 
 <div class="watermark"><img src="img/header.png" width="400"></div>

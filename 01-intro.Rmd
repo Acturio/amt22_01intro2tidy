@@ -16,6 +16,13 @@
 knitr::include_graphics("img/01-intro/01_muestra.jpg")
 ```
 
+- **Business Intelligence**: BI aprovecha el software y los servicios para transformar los datos en conocimientos prácticos que informan las decisiones empresariales estratégicas y tácticas de una organización. Las herramientas de BI acceden y analizan conjuntos de datos y presentan hallazgos analíticos en informes, resúmenes, tableros, gráficos, cuadros, -indicadores- o KPI's y mapas para proporcionar a los usuarios inteligencia detallada sobre el estado del negocio. (BI esta enfocado en analizar la historia pasada)
+
+```{r echo=FALSE,fig.align='center'}
+knitr::include_graphics("img/01-intro/04_bi.png")
+```
+
+
 - **Machine Learning**: El ‘machine learning’ –aprendizaje automático– es una rama de la inteligencia artificial que permite que las máquinas aprendan de los patrones existentes en los datos. Se usan métodos computacionales para aprender de datos con el fin de producir reglas para mejorar el desempeño en alguna tarea o toma de decisión. (Está enfocado en la programación de máquinas para aprender de los patrones existentes en datos principalmente estructurados y anticiparse al futuro)
 
 ```{r echo=FALSE,fig.align='center', out.width='600pt'}
@@ -27,11 +34,7 @@ knitr::include_graphics("img/01-intro/02_ml.png")
 knitr::include_graphics("img/01-intro/03_supervisado_robo.png")
 ```
 
-- **Business Intelligence**: BI aprovecha el software y los servicios para transformar los datos en conocimientos prácticos que informan las decisiones empresariales estratégicas y tácticas de una organización. Las herramientas de BI acceden y analizan conjuntos de datos y presentan hallazgos analíticos en informes, resúmenes, tableros, gráficos, cuadros, -indicadores- o KPI's y mapas para proporcionar a los usuarios inteligencia detallada sobre el estado del negocio. (BI esta enfocado en analizar la historia pasada)
 
-```{r echo=FALSE,fig.align='center'}
-knitr::include_graphics("img/01-intro/04_bi.png")
-```
 
 - **Deep Learning**: El aprendizaje profundo es un subcampo del aprendizaje automático que se ocupa de los algoritmos inspirados en la estructura y función del cerebro llamados redes neuronales artificiales. 
 
@@ -53,7 +56,7 @@ knitr::include_graphics("img/01-intro/06_ml1.png")
 knitr::include_graphics("img/01-intro/07_bigdata.jpg")
 ```
 
-Curiosidad: [Servidores en líquido para ser enfriados](http://https://www.xataka.com/energia/para-enfriar-sus-servidores-microsoft-esta-sumergiendo-liquido-liquido-hirviendo)
+Curiosidad: [Servidores en líquido para ser enfriados](https://www.xatakawindows.com/actualidad-en-redmond/servidores-liquido-hirviendo-esta-idea-microsoft-para-evitar-calentamiento-sus-equipos#:~:text=Con%20este%20sistema%2C%20el%20dispositivo,fr%C3%ADo%2C%20emplea%20uno%20en%20ebullici%C3%B3n.)
 
 Curiosidad 2: [Centro de datos en el océano](https://www.bbc.com/mundo/noticias/2016/02/160202_microsoft_centro_datos_debajo_agua_mar_subamino_all)
 
@@ -81,6 +84,8 @@ Curiosidad 2: [Centro de datos en el océano](https://www.bbc.com/mundo/noticias
 knitr::include_graphics("img/01-intro/08_data_science_vd.png")
 ```
 Fuente: [Blog post de Drew Conway](http://drewconway.com/zia/2013/3/26/the-data-science-venn-diagram)
+
+Más sobre Conway: [Forbes 2016](https://www.forbes.com/sites/joshwolfe/2016/03/03/using-data-science-for-the-physical-world/?sh=614ac5b0150e)
 
 
 ## ¿Qué se requiere para hacer Ciencia de Datos?
