@@ -97,7 +97,7 @@ Requisitos: Computadora con al menos 4Gb Ram
 
 ## Duración y evaluación del curso
 
-* El programa anterior tiene una duración de 24 hrs.
+* El programa tiene una duración de 24 hrs.
 
 * Las clases serán impartidas los días sábado, de 9:00 am a 1:00 pm 
 
