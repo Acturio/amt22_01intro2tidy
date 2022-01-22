@@ -62,38 +62,43 @@ Requisitos: Computadora con al menos 4Gb Ram
 
 **Temario:**
 
-* Introducción a Ciencia de Datos
-  * ¿Qué es Ciencia de Datos?
-  * Objetivo de la ciencia de datos
-  * ¿Qué se requiere para hacer ciencia de datos?
-  * Tipos de problemas que se pueden resolver 
-  * Tipos de algoritmos y aprendizaje
+**1. Introducción a Ciencia de Datos**
+
+* ¿Qué es Ciencia de Datos?
+* Objetivo de la ciencia de datos
+* ¿Qué se requiere para hacer ciencia de datos?
+* Tipos de problemas que se pueden resolver 
+* Tipos de algoritmos y aprendizaje
 
 
-* Transformación y manipulación de estructuras de datos
-  * Importación
-  * Lectura 
-  * Consultas 
-  * Transformación de estructura
+**2. Transformación y manipulación de estructuras de datos**
+
+* Importación
+* Lectura 
+* Consultas 
+* Transformación de estructura
 
 
-* Manipulación de texto
-  * Concatenación
-  * Expresiones regulares
-  * Extracción
+**3. Manipulación de texto**
+
+* Concatenación
+* Expresiones regulares
+* Extracción
 
 
-* Manipulación de fechas y horas
-  * Creación de datos temporales
-  * Transformación de datos temporales
-  * Operaciones con datos temporales
+**4.  Manipulación de fechas y horas**
+
+* Creación de datos temporales
+* Transformación de datos temporales
+* Operaciones con datos temporales
 
 
-* Análisis exploratorio y visualización interactiva de datos
-  * EDA
-  * GEDA
-  * Uso, decisión e implementación de técnicas gráficas
-  * Visualización interactiva
+**5. Análisis exploratorio y visualización interactiva de datos**
+
+* EDA
+* GEDA
+* Uso, decisión e implementación de técnicas gráficas
+* Visualización interactiva
 
 ## Duración y evaluación del curso
 
