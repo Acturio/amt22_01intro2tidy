@@ -250,7 +250,7 @@ En la programación orientada a objetos, un programa recolecta muchos objetos pa
 
 2.  **Métodos:** Acceden a los atributos de los objetos y determinan el comportamiento de los datos contenidos.
 
-## Tipos de variables
+# Tipos de variables
 
 ---
 Para este capítulo usaremos las notas de 'fhernanb': [Manual de R](https://fhernanb.github.io/Manual-de-R/intro.html)
@@ -258,7 +258,7 @@ Para este capítulo usaremos las notas de 'fhernanb': [Manual de R](https://fher
 
 En R existen varios tipos de objectos que permiten que el usuario pueda almacenar la información para realizar procedimientos estadísticos y gráficos. Los principales objetos en R son vectores, matrices, arreglos, marcos de datos y listas. A continuación se presentan las características de estos objetos y la forma para crearlos.
 
-### Variables
+## Variables
 
 Las variables sirven para almacenar un valor que luego vamos a utilizar en algún procedimiento.
 
@@ -276,7 +276,7 @@ pais <- "Colombia"
 nchar(pais)
 ```
 
-### Vectores
+## Vectores
 
 Los vectores vectores son arreglos ordenados en los cuales se puede almacenar información de tipo numérico (variable cuantitativa), alfanumérico (variable cualitativa) o lógico (TRUE o FALSE), pero no mezclas de éstos. La función de R para crear un vector es c() y que significa concatenar; dentro de los paréntesis de esta función se ubica la información a almacenar. Una vez construído el vector se acostumbra a etiquetarlo con un nombre corto y representativo de la información que almacena, la asignación se hace por medio del operador \<- entre el nombre y el vector.
 
@@ -317,7 +317,7 @@ comic_fav
 Una variable es un vector de longitud uno.
 ---
 
-#### Cómo extraer elementos de un vector?
+### Cómo extraer elementos de un vector?
 
 Para extraer un elemento almacenado dentro un vector se usan los corchetes \[\] y dentro de ellos la posición o posiciones que interesan.
 
@@ -347,7 +347,7 @@ Si desea extraer varios posiciones de un vector NUNCA escriba esto: mivector[2, 
 ---
 
 
-### Matrices
+## Matrices
 
 
 Las matrices son arreglos rectangulares de filas y columnas con información numérica, alfanumérica o lógica. Para construir una matriz se usa la función matrix( ). Por ejemplo, para crear una matriz de 4 filas y 5 columnas (de dimensión  4×5) con los primeros 20 números positivos se escribe el código siguiente en la consola.
@@ -362,7 +362,7 @@ El argumento data de la función sirve para indicar los datos que se van a almac
 mimatriz
 ```
 
-####  ¿Cómo extraer elementos de una matriz?
+###  ¿Cómo extraer elementos de una matriz?
 
 
 Al igual que en el caso de los vectores, para extraer elementos almacenados dentro de una matriz se usan los corchetes [ , ] y dentro, separado por una coma, el número de fila(s) y el número de columna(s) que nos interesan.
@@ -401,7 +401,7 @@ Si queremos recuperar la matriz original sin la fila 1 ni columna 3 usamos el si
 mimatriz[-1, -3]  # Signo de menos para eliminar
 ```
 
-###  Arreglos 
+##  Arreglos 
 
 Un arreglo es una matriz de varias dimensiones con información numérica, alfanumérica o lógica. Para construir una arreglo se usa la función array( ). Por ejemplo, para crear un arreglo de  3 × 4 × 2 con las primeras 24 letras minúsculas del alfabeto se escribe el siguiente código.
 
@@ -416,7 +416,7 @@ miarray
 ```
 
 
-#### ¿Cómo extraer elementos de un arreglo?
+### ¿Cómo extraer elementos de un arreglo?
 Para recuperar elementos almacenados en un arreglo se usan también corchetes, y dentro de los corchetes, las coordenadas del objeto de interés.
 
 
@@ -440,7 +440,7 @@ Si queremos extraer la tercera columna de todas las capas usamos el siguiente c�
 miarray[, 3,]  # No se coloca nada en las primeras posiciones
 ```
 
-### Data Frames  
+## Data Frames  
 El marco de datos marco de datos o data frame es uno de los objetos más utilizados porque permite agrupar vectores con información de diferente tipo (numérica, alfanumérica o lógica) en un mismo objeto, la única restricción es que los vectores deben tener la misma longitud. Para crear un marco de datos se usa la función data.frame( ), como ejemplo vamos a crear un marco de datos con los vectores edad, deporte y comic_fav definidos anteriormente.
 
 
@@ -459,7 +459,7 @@ mi_data_frame
 De la salida anterior vemos que el marco de datos tiene 3 variables (columnas) cuyos nombres coinciden con los nombres de los vectores creados anteriormente, los números consecutivos al lado izquierdo son sólo de referencia y permiten identificar la información para cada persona en la base de datos.
 
 
-#### ¿Cómo extraer elementos de un data frame?
+### ¿Cómo extraer elementos de un data frame?
 Para recuperar las variables (columnas) almacenadas en un marco de datos se puede usar el operador $, corchetes simples $$[]$$ o corchetes dobles $$[[]]$$. A continuación algunos ejemplos para entender las diferencias entre estas opciones.
 
 **Ejemplo**
@@ -505,7 +505,7 @@ mi_data_frame[2:4, 1]
 
 
 
-####¿Cómo extraer subconjuntos de un data frame? 
+###¿Cómo extraer subconjuntos de un data frame? 
 Para extraer partes de un marco de datos se puede utilizar la función subset(x, subset, select). El parámetro x sirve para indicar el marco de datos original, el parámetro subset sirve para colocar la condición y el parámetro select sirve para quedarnos sólo con algunas de las variabl es del marco de datos. A continuación varios ejemplos de la función subset para ver su utilidad.
 
 Ejemplos
@@ -559,7 +559,7 @@ dt2  # Para mostrar la base de datos final
 Al almacenar la nueva base de datos en el objeto dt2 se puede manipular este nuevo objeto para realizar los análisis de interés.
 
 
-### Listas
+## Listas
 
 
 Las listas son otro tipo de objeto muy usado para almacenar objetos de diferente tipo. La instrucción para crear una lista es list( ). A continuación vamos a crear una lista que contiene tres objetos: un vector con 5 números aleatorios llamado mivector, una matriz de dimensión  6×2 con los primeros doce números enteros positivos llamada matriz2 y el tercer objeto será el marco de datos mi_data_frame creado en el apartado anterior. Las instrucciones para crear la lista requerida se muestran a continuación.
@@ -578,7 +578,7 @@ La función set.seed de la línea número 1 sirve para fijar la semilla de tal m
 milista
 ```
 
-#### ¿Cómo extraer elementos de una lista?
+### ¿Cómo extraer elementos de una lista?
 Para recuperar los elementos almacenadas en una lista se usa el operador $, corchetes dobles [[]] o corchetes sencillos []. A continuación unos ejemplos para entender cómo extraer elementos de una lista.
 
 **Ejemplos**
@@ -619,7 +619,7 @@ De lo anterior se observa claramente que cuando usamos $ o [[]] el resultado es 
 ---
 
 
-### Ejercicios
+## Ejercicios
 
 
 1. Use funciones o procedimientos (varias líneas) de R para responder cada una de las siguientes preguntas.
@@ -634,7 +634,8 @@ De lo anterior se observa claramente que cuando usamos $ o [[]] el resultado es 
 
 6. Construya un marco de datos o data frame con las respuestas de 3 personas a las preguntas: (a) ¿Cuál es su edad en años? (b) ¿Tipo de música que más le gusta? (c) ¿Tiene usted pareja sentimental estable?
 
-7. ¿Cuál es el error al correr el siguiente código? ¿A qué se debe?
+7. ¿Cuál es el error al correr el siguiente código? ¿A qué se debe? 
+
 
 ```{r, eval=FALSE}
 
@@ -644,3 +645,578 @@ comic_fav <- c(NA, 'Superman', 'Batman', NA, 'Batman')
 matrix(edad, deporte, comic_fav)
 
 ```
+
+
+# Guía de estilo {#estilo}
+
+Así como en el español existen reglas ortográficas, la escritura de códigos en R también tiene unas reglas que se recomienda seguir para evitar confusiones. Tener una buena guía de estilo es importante para que el código creado por usted sea fácilmente entendido por sus lectores [@rpackages]. No existe una única y mejor guía de estilo para escritura en R, sin embargo aquí vamos a mostrar unas sugerencias basadas en la guía llamada [The tidyverse style guidee](https://style.tidyverse.org/).
+
+## Nombres de los archivos
+Se sugiere que el nombre usado para nombrar un archivo tenga sentido y que termine con extensión ".R". A continuación dos ejemplos de como nombrar bien y mal un archivo.
+
+- Bien: `"2020-analisis_pca.R`
+- Mal: `ju89HR56_74.R`
+
+## Nombres de los objetos
+Se recomienda usar los símbolos `_` dentro de los nombres de objetos. 
+
+- Para las variables es preferible usar letras minúsculas (`pesomaiz` o `peso_maiz`) o utilizar la notación camello iniciando en minúscula (`pesoMaiz`). 
+- Para las funciones se recomienda usar la notación camello iniciando todas la palabras en mayúscula (`PlotRes`). 
+- Para los nombres de las constantes se recomienda que inicien con la letra k (`kPrecioBus`).
+
+## Longitud de una línea de código
+Se recomienda que cada línea tenga como máximo 80 caracteres. Si una línea es muy larga se debe cortar siempre por una coma.
+
+## Espacios
+Use espacios alrededor de todos los operadores binarios (=, +, -, <-, etc.). Los espacios alrededor del símbolo `=` son opcionales cuando se usan para ingresar valores dentro de una función. Así como en español, nunca coloque espacio antes de una coma, pero siempre use espacio luego de una coma. A continuación ejemplos de buenas y malas prácticas.
+
+```{r, eval=F}
+tab <- table(df[df$days < 0, 2])  # Bien
+tot <- sum(x[, 1])                # Bien
+tot <- sum(x[1, ])                # Bien
+tab <- table(df[df$days<0, 2])    # Faltan espacios alrededor '<' 
+tab <- table(df[df$days < 0,2])   # Falta espacio luego de coma
+tab <- table(df[df$days < 0 , 2]) # Sobra espacio antes de coma
+tab<- table(df[df$days < 0, 2])   # Falta espacio antes de '<-'
+tab<-table(df[df$days < 0, 2])    # Falta espacio alrededor de '<-'
+tot <- sum(x[,1])                 # Falta espacio luego de coma
+tot <- sum(x[1,])                 # Falta espacio luego de coma
+```
+
+Otra buena práctica es colocar espacio antes de un paréntesis excepto cuando se llama una función.
+
+```{r, eval=F}
+if (debug)    # Correcto
+if(debug)     # Funciona pero no se recomienda
+colMeans (x)  # Funciona pero no se recomienda
+```
+
+Espacios extras pueden ser usados si con esto se mejora la apariencia del código, ver el ejemplo siguiente.
+
+```{r, eval=F}
+plot(x    = x.coord,
+     y    = data.mat[, MakeColName(metric, ptiles[1], "roiOpt")],
+     ylim = ylim,
+     xlab = "dates",
+     ylab = metric,
+     main = (paste(metric, " for 3 samples ", sep = "")))
+```
+
+No coloque espacios alrededor del código que esté dentro de paréntesis `( )` o corchetes `[ ]`, la única excepción es luego de una coma, ver el ejemplo siguiente.
+
+```{r, eval=F}
+if (condicion)    # Correcto 
+x[1, ]            # Correcto
+if ( condicion )  # Sobran espacios alrededor de condicion
+x[1,]             # Se necesita espacio luego de coma
+```
+
+Los signos de agrupación llaves `{ }` se utilizan para agrupar bloques de código y se recomienda que nunca una llave abierta `{` esté sola en una línea; una llave cerrada `}` si debe ir sola en su propia línea. Se pueden omitir las llaves cuando el bloque de instrucciones esté formado por una sola línea pero esa línea de código NO debe ir en la misma línea de la condición. A continuación dos ejemplos de lo que se recomienda.
+
+```{r, eval=F}
+if (is.null(ylim)) {                     # Correcto
+  ylim <- c(0, 0.06)
+}
+if (is.null(ylim))                       # Correcto
+  ylim <- c(0, 0.06)
+if (is.null(ylim)) ylim <- c(0, 0.06)    # Aceptable
+if (is.null(ylim))                       # No se recomienda
+{        
+  ylim <- c(0, 0.06)
+}
+	
+if (is.null(ylim)) {ylim <- c(0, 0.06)}
+# Frente a la llave { no debe ir nada
+# la llave de cierre } debe ir sola
+```
+
+La sentencia else debe ir siempre entre llaves `} {`, ver el siguiente ejemplo.
+
+```{r, eval=F}
+if (condition) {         
+  one or more lines
+} else {                 # Correcto
+  one or more lines
+}
+if (condition) {         
+  one or more lines
+}
+else {                   # Incorrecto
+  one or more lines
+}
+if (condition)           
+  one line
+else                     # Incorrecto
+  one line
+```
+
+## Asignación
+
+Para realizar asignaciones se recomienda usar el símbolo `<-`, el símbolo de igualdad `=` no se recomienda usarlo para asignaciones.
+
+```{r, eval=F}
+x <- 5  # Correcto
+x = 5   # No recomendado
+```
+
+Para una explicación más detallada sobre el símbolo de asignación se recomienda visitar este [enlace](http://www.win-vector.com/blog/2016/12/the-case-for-using-in-r/).
+
+## Punto y coma
+No se recomienda colocar varias instrucciones separadas por `;` en la misma línea, aunque funciona dificulta la revisión del código.
+
+```{r, eval=F}
+n <- 100; y <- rnorm(n, mean=5); hist(y)  # No se recomienda
+n <- 100                                  # Correcto
+y <- rnorm(n, mean=5)
+hist(y)
+```
+
+
+A pesar de la anterior advertencia es posible que en este libro usemos el `;` en algunas ocasiones, si lo hacemos es para ahorrar espacio en la presentación del código.
+
+
+
+# Funciones básicas de R {#funbas}
+
+En este capítulo se presentará lo que es una función y se mostrarán varias funciones básicas que son útiles para realizar diversas tareas.
+
+## ¿Qué es una función de R?
+En la figura de abajo se muestra una ilustración de lo que es una función o máquina general. Hay unas entradas (_inputs_) que luego son procesadas dentro de la caja para generar unas salidas (_outputs_). Un ejemplo de una función o máquina muy común en nuestras casas es la licuadora. Si a una licuadora le ingresamos leche, fresas, azúcar y hielo, el resultado será un delicioso jugo de fresa. 
+
+
+```{r echo=FALSE,fig.align='center', out.width='600pt' }
+knitr::include_graphics("img/01-intro/17_funcion.png")
+```
+
+
+Las funciones en R se caracterizan por un nombre corto y que dé una idea de lo que hace la función. Los elementos que pueden ingresar (_inputs_) a la función se llaman __parámetros__ o __argumentos__ y se ubican dentro de paréntesis, el cuerpo de la función se ubica dentro de llaves y es ahí donde se procesan los _inputs_ para convertirlos en _outputs_, a continuación se muestra la estructura general de una función.
+
+```{r, eval=F}
+nombre_de_funcion(parametro1, parametro2, ...) {
+  tareas internas
+  tareas internas
+  tareas internas
+  salida
+}
+```
+
+Cuando usamos una función sólo debemos escribir bien el nombre e ingresar correctamente los parámetros de la función, el cuerpo de la función ni lo vemos ni lo debemos modificar. A continuación se presenta un ejemplo de cómo usar la función `mean` para calcular un promedio.
+
+```{r}
+notas <- c(4.0, 1.3, 3.8, 2.0)  # Notas de un estudiante
+mean(notas)
+```
+
+## Operadores de asignación
+En R se pueden hacer asignación de varias formas, a continuación se presentan los operadores disponibles para tal fin.
+
+- `<-` este es el operador de asignación a izquierda, es el más usado y recomendado.
+- `->` este es el operador de asignación a derecha, no es frecuente su uso.
+- `=` el símbolo igual sirve para hacer asignaciones pero __NO__ se recomienda usarlo.
+- `<<-` este es un operador de asignación global y sólo debe ser usado por usuarios avanzados.
+
+### Ejemplo {-}
+Almacene los valores 5.3, 4.6 y 25 en los objetos `a`, `b` y `age` respectivamente, use diferentes símbolos de asignación.
+
+Para hacer lo solicitado se podría usar el siguiente código.
+
+```{r}
+a <- 5.3 # Recomended
+4.6 -> b # It is not usual
+age = 25 # Not recomended
+```
+
+```{block2, type='rmdimportant'}
+Aunque una asignación se puede hacer de tres formas diferentes, se recomienda sólo usar el símbolo `<-`.
+```
+
+## Operaciones básicas
+En R se pueden hacer diversas operaciones usando operadores binarios. Este tipo de operadores se denomina binarios porque actuan entre dos objetos, a continuación el listado.
+
+- `+` operador binario para sumar.
+- `-` operador binario para restar.
+- `*` operador binario para multiplicar.
+- `/` operador binario para dividir.
+- `^` operador binario para potencia.
+- `%/%` operador binario para obtener el cociente en una división (número entero).
+- `%%` operador binario para obtener el residuo en una división.
+
+
+A continuación se presentan ejemplos de cómo usar las anteriores funciones.
+
+```{r}
+6 + 4  # Para sumar dos números
+a <- c(1, 3, 2)
+b <- c(2, 0, 1)  # a y b de la misma dimensión
+a + b  # Para sumar los vectores a y b miembro a miembro
+a - b  # Para restar dos vectores a y b miembro a miembro
+a * b  # Para multiplicar
+a / b  # Para dividir
+a ^ b  # Para potencia
+7 %/% 3  # Para saber las veces que cabe 3 en 7
+7 %% 3  # Para saber el residuo al dividir 7 entre 3
+```
+
+## Pruebas lógicas
+En R se puede verificar si un objeto cumple una condición dada, a continuación el listado de las pruebas usuales.
+
+- `<` para saber si un número es menor que otro.
+- `>` para saber si un número es mayor que otro.
+- `==` para saber si un número es igual que otro.
+- `<=` para saber si un número es menor o igual que otro.
+- `>=` para saber si un número es mayor o igual que otro.
+
+A continuación se presentan ejemplos de cómo usar las anteriores funciones.
+
+```{r}
+5 < 12  # ¿Será 5 menor que 12?
+# Comparando objetos
+x <- 5
+y <- 20 / 4
+x == y  # ¿Será x igual a y?
+# Usando vectores
+a <- c(1, 3, 2)
+b <- c(2, 0, 1)
+a > b  # Comparación término a término
+a == b  # Comparación de igualdad término a término
+```
+
+
+## Operadores lógicos
+En R están disponibles los operadores lógicos negación, conjunción y disyunción. A continuación el listado de los operadores entre los elementos `x` e `y`.
+
+```{r, eval=F}
+!x  # Negación de x
+x & y  # Conjunción entre x e y
+x && y
+x | y  # Disyunción entre x e y
+x || y
+xor(x, y)
+```
+
+A continuación se presentan ejemplos de cómo usar el símbolo de negación `!`.
+
+```{r}
+ans <- c(TRUE, FALSE, TRUE)
+!ans  # Negando las respuestas almacenadas en ans
+x <- c(5, 1.5, 2, 3, 2)
+!(x < 2.5)  # Negando los resultados de una prueba
+```
+
+A continuación se presentan ejemplos de cómo aplicar la conjunción `&` y `&&`.
+
+```{r}
+x <- c(5, 1.5, 2)  # Se construyen dos vectores para la prueba
+y <- c(4, 6, 3)
+x < 4  # ¿Serán los elementos de x menores que 4?
+y > 5  # ¿Serán los elementos de y mayores que 5?
+x < 4 & y > 5  # Conjunción entre las pruebas anteriores.
+x < 4 && y > 5  # Conjunción vectorial
+```
+
+Note las diferencias entre los dos últimos ejemplos, cuando se usa `&` se hace una prueba término a término y el resultado es un vector, cuando se usa `&&` se aplica la conjunción al vector de resultados obtenido con `&`.
+
+## Funciones sobre vectores
+En R podemos destacar las siguientes funciones básicas sobre vectores numéricos.
+
+- `min`: para obtener el mínimo de un vector.
+- `max`: para obtener el máximo de un vector.
+- `length`: para determinar la longitud de un vector.
+- `range`: para obtener el rango de valores de un vector, entrega el mínimo y máximo.
+- `sum`: entrega la suma de todos los elementos del vector.
+- `prod`: multiplica todos los elementos del vector.
+- `which.min`: nos entrega la posición en donde está el valor mínimo del vector.
+- `which.max`: nos da la posición del valor máximo del vector.
+- `rev`: invierte un vector.
+
+### Ejemplo {-}
+Construir en vector llamado `myvec` con los siguientes elementos: 5, 3, 2, 1, 2, 0, NA, 0, 9, 6. Luego aplicar todas las funciones anteriores para verificar el funcionamiento de las mismas.
+
+```{r}
+myvec <- c(5, 3, 2, 1, 2, 0, NA, 0, 9, 6)
+myvec
+min(myvec)  # Opss, no aparece el mínimo que es Cero.
+min(myvec, na.rm=TRUE)  # Usamos na.rm = TRUE para remover el NA
+max(myvec, na.rm=T)  # Para obtener el valor máximo
+range(myvec, na.rm=T)  # Genera min y max simultáneamente
+sum(myvec, na.rm=T)  # La suma de los valores internos
+prod(myvec, na.rm=T)  # El productor de los valores internos
+which.min(myvec)  # Posición del valor mínimo 0 en el vector
+which.max(myvec)  # Posición del valor máximo 9 en el vector
+```
+
+De las dos últimas líneas podemos destacar lo siguiente:
+
+1. __NO es necesario__ usar `na.rm = TRUE` para remover el `NA` dentro de las funciones `which.min` ni `which.max`.
+2. El valor mínimo 0 aparece en las posicione
+
+
+## Función `rep`
+En R podemos crear repeticiones usando la función `rep`, la estructura de esta función es:
+
+```{r, eval=F}
+rep(x, times=1, length.out=NA, each=1)
+```
+
+Los argumentos de esta función son:
+
+- `x`: vector con los elementos a repetir.
+- `times`: número de veces que el vector `x` se debe repetir.
+- `length.out`: longitud deseada para el vector resultante.
+- `each`: número de veces que cada elemento de `x` se debe repetir.
+
+### Ejemplo {-}
+Construya las siguientes repeticiones usando la función `rep`, no lo haga ingresando número por número.
+
+- 1 2 3 4 1 2 3 4
+- 1 1 2 2 3 3 4 4
+- 1 1 2 3 3 4
+- 1 1 2 2 3 3 4 4
+
+La clave para construir una repetición es descrubir la semilla o elemento que se repite. Las instrucciones para obtener las repeticiones anteriores se muestra a continuación.
+
+```{r}
+rep(x=1:4, times=2)
+rep(x=1:4, times=c(2,2,2,2))
+rep(x=1:4, times=c(2,1,2,1))
+rep(x=1:4, each=2)
+```
+
+## Función `seq`
+En R podemos crear secuencias de números de una forma sencilla usando la función `seq`, la estructura de esta función es:
+
+```{r, eval=F}
+seq(from=1, to=1, by, length.out)
+```
+
+Los argumentos de esta función son:
+
+- `from`: valor de inicio de la secuencia.
+- `to`: valor de fin de la secuencia, no siempre se alcanza.
+- `by`: incremento de la secuencia.
+- `length.out`: longitud deseado de la secuencia.
+
+### Ejemplo {-}
+Construya las siguientes tres secuencias usando la función `seq`.
+
+- Once valores igualmente espaciados desde 0 hasta 1.
+- Una secuencia de dos en dos comenzando en 1.
+- Una secuencia desde 1 con un salto de $\pi$ y sin pasar del número 9.
+
+El código necesario para obtener las secuencias se muestra a continuación.
+
+```{r}
+seq(from=0, to=1, length.out = 11)
+seq(from=1, to=9, by=2)  # matches 'end'
+seq(from=1, to=9, by=pi) # stays below 'end'
+```
+
+```{block2, type='rmdnote'}
+En R existe el operador binario `:` que sirve para construir secuencias de uno en uno fácilmente.
+```
+
+Revise los siguientes ejemplos para entender el funcionamiento del operador `:`.
+
+```{r}
+2:8
+3:-5
+pi:6  # real sequence
+6:pi  # integer sequence
+```
+
+
+
+## EJERCICIOS 
+Use funciones o procedimientos (varias líneas) de R para responder cada una de las siguientes preguntas.
+
+1. ¿Qué cantidad de dinero sobra al repartir 10000\$ entre 3 personas?
+2. ¿Es el número 4560 divisible por 3?
+3. Construya un vector con los números enteros del 2 al 87. ¿Cuáles de esos números son divisibles por 7?
+4. Construya dos vectores, el primero con los números enteros desde 7 hasta 3, el segundo vector con los primeros cinco números positivos divisibles por 5. Sea A la condición de ser par en el primer vector. Sea B la condición de ser mayor que 10 en el segundo vector. ¿En cuál de las 5 posiciones se cumple A y B simultáneamente?
+
+6. Construya un vector con los siguientes elementos: 1, -4, 5, 9, -4. Escriba un procedimiento para extraer __las posiciones__ donde está el valor mínimo en el vector.
+7. Calcular $8!$
+8. Evaluar la siguiente suma $\sum_{i=3}^{i=7}e^i$
+9. Evaluar la siguiente productoria $\prod_{i=1}^{i=10}\log\sqrt{i}$
+10. Construya un vector cualquiera e inviertalo, es decir, que el primer elemento quede de último, el segundo de penúltimo y así sucesivamente. Compare su resultado con el de la función `rev`.
+11. Create the vector: $1, 2, 3, \ldots, 19, 20$.
+12. Create the vector: $20, 19, \ldots , 2, 1$.
+13. Create the vector: $1, -2, 3, -4, 5, -6, \ldots, 19, -20$.
+14. Create the vector: $0.1^3, 0.2^1, 0.1^6, 0.2^4, . . . , 0.1^{36}, 0.2^{34}$.
+15. Calculate the following: $\sum_{i=10}^{100}(i^3+4i^2)$ and $\sum_{i=1}^{25}\left( \frac{2^i}{i} + \frac{3^i}{i^2} \right)$.
+
+
+
+En R hay unas bases de datos incluídas, una de ellas es la base de datos llamada `mtcars`. Para conocer las variables que están en `mtcars` usted puede escribir en la consola `?mtcars` o también `help(mtcars)`. De la base `mtcars` obtenga bases de datos que cumplan las siguientes condiciones.
+
+22. Autos que tengan un rendimiento menor a 18 millas por galón de combustible.
+23. Autos que tengan 4 cilindros.
+24. Autos que pesen más de 2500 libras y tengan transmisión manual.
+
+
+
+# Instrucciones de control {#bucles}
+
+En R se disponen de varias instrucciones de control para facilitar los procedimientos que un usuario debe realizar. A continuación se explican esas instrucciones de control.
+
+## Instrucción `if`
+Esta instrucción sirve para realizar un conjunto de operaciones __si__ se cumple cierta condición. A continuación se muestra la estructura básica de uso.
+
+```{r, eval=FALSE}
+if (condicion) {
+  operación 1
+  operación 2
+  ...
+  operación final
+}
+```
+
+### Ejemplo {-}
+Una secretaria recibe la información del salario básico semanal de un empleado y las horas trabajadas durante la semana por ese empleado. El salario básico es la remuneración por 40 horas de labor por semana, las horas extra son pagadas a ciencuenta mil pesos. Escriba el procedimiento en R que debe usar la secretaria para calcular el salario semanal de un empleado que trabajó 45 horas y tiene salario básico de un millon de pesos.
+
+El código para calcular el salario final del empleado es el siguiente:
+```{r}
+sal <- 1  # Salario básico por semana
+hlab <- 45   # Horas laboradas por semana
+if(hlab > 40) {
+  hext <- hlab - 40
+  salext <- hext * 0.05
+  sal <- sal + salext
+}
+sal  # Salario semanal
+```
+
+## Instrucción `if` `else` 
+Esta instrucción sirve para realizar un conjunto de operaciones cuando __NO__ se cumple cierta condición evaluada por un `if`. A continuación se muestra la estructura básica de uso.
+
+```{r, eval=FALSE}
+if (condicion) {
+  operación 1
+  operación 2
+  ...
+  operación final
+}
+else {
+  operación 1
+  operación 2
+  ...
+  operación final
+}
+```
+
+## Instrucción `ifelse` 
+Se recomienda usar la instrucción `ifelse` cuando hay una sola instrucción para el caso `if` y para el caso `else`. A continuación se muestra la estructura básica de uso.
+
+```{r, eval=FALSE}
+ifelse(condición, operación SI cumple, operación NO cumple)
+```
+
+### Ejemplo {-}
+Suponga que usted recibe un vector de números enteros, escriba un procedimiento que diga si cada elemento del vector es par o impar.
+
+```{r}
+x <- c(5, 3, 2, 8, -4, 1)
+ifelse(x %% 2 == 0, 'Es par', 'Es impar')
+```
+
+## Instrucción `for` 
+La instrucción `for` es muy útil para repetir un procedimiento cierta cantidad de veces. A continuación se muestra la estructura básica de uso.
+
+```{r, eval=FALSE}
+for (i in secuencia) {
+  operación 1
+  operación 2
+  ...
+  operación final
+}
+```
+
+### Ejemplo {-}
+Escriba un procedimiento para crear 10 muestras de tamaño 100 de una distribución uniforme entre uno y tres. Para cada una de las muestra, se debe contar el número de elementos de la muestra que fueron mayores o iguales a 2.5.
+
+```{r}
+nrep <- 10  # Número de repeticiones
+n <- 100    # Tamaño de la muestra
+conteo <- numeric(nrep)  # Vector para almacenar el conteo
+for (i in 1:nrep) {
+  x <- runif(n=n, min=1, max=3)
+  conteo[i] <- sum(x >= 2.5)
+}
+conteo  # Para obtener el conteo
+```
+
+## Instrucción `while` 
+La instrucción `while` es muy útil para repetir un procedimiento siempre que se cumple una condición. A continuación se muestra la estructura básica de uso.
+
+```{r, eval=FALSE}
+while (condición) {
+  operación 1
+  operación 2
+  ...
+  operación final
+}
+```
+
+### Ejemplo {-}
+Suponga que se lanza una moneda en la cual el resultado es cara o sello. Escribir un procedimiento que simule lanzamientos hasta que el número de caras obtenidas sea 5. El procedimiento debe entregar el historial de lanzamientos.
+
+Para simular el lanzamiento de __una__ moneda se puede usar la función `sample` y definiendo el vector `resultados` con `size=1` para simular un lanzamiento, a continuación el código y tres pruebas ilustrativas.
+
+```{r}
+resultados <- c('Cara', 'Sello')
+sample(x=resultados, size=1)  # Prueba 1
+```
+
+Una vez seamos capaces de simular un lanzamiento podemos escribir el procedimiento para generar tantos lanzamientos hasta que se cumpla la condición. El código mostrado abajo permite hacer lo solicitado.
+
+```{r}
+num.lanza <- 0     # Contador de lanzamientos
+num.caras <- 0     # Contados de caras obtenidas
+historial <- NULL  # Vector vacío para almacenar
+while (num.caras < 5) {
+  res <- sample(x=resultados, size=1)
+  num.lanza <- num.lanza + 1
+  historial[num.lanza] <- res
+  if (res == 'Cara') {
+    num.caras <- num.caras + 1
+  }
+}
+historial
+num.lanza
+```
+
+```{block2, type='rmdnote'}
+La instrucción `for` se usa cuando sabemos el número de veces que se debe repetir el procedimiento, mientras que la instrucción `while` se usa cuando debemos repetir un procedimiento cuando se cumpla una condición.
+```
+
+## Instrucción `repeat` 
+La instrucción `while` es muy útil para repetir un procedimiento siempre que se cumple una condición. A continuación se muestra la estructura básica de uso.
+
+```{r, eval=FALSE}
+repeat {
+  operación 1
+  operación 2
+  ...
+  operación final
+  if (condición) break
+}
+```
+
+### Ejemplo {-}
+Escribir un procedimiento para ir aumentando de uno en uno el valor de `x` hasta que `x` sea igual a siete El procedimiento debe imprimir por pantalla la secuencia de valores de `x`.
+
+```{r}
+x <- 3  # Valor de inicio
+repeat {
+   print(x)
+   x <-  x + 1
+   if (x == 8) {
+     break
+   }
+}
+```
+
+```{block2, type='rmdtip'}
+La instrucción `break` sirve para salir de un procedimiento iterativo.
+```
+
