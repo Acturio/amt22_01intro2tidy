@@ -245,3 +245,5 @@ iris %>%
 ```
 
 
+
+## Manipulación de texto (stringr)

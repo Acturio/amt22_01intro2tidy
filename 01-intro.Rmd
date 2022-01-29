@@ -1039,11 +1039,11 @@ Use funciones o procedimientos (varias líneas) de R para responder cada una de 
 8. Evaluar la siguiente suma $\sum_{i=3}^{i=7}e^i$
 9. Evaluar la siguiente productoria $\prod_{i=1}^{i=10}\log\sqrt{i}$
 10. Construya un vector cualquiera e inviertalo, es decir, que el primer elemento quede de último, el segundo de penúltimo y así sucesivamente. Compare su resultado con el de la función `rev`.
-11. Create the vector: $1, 2, 3, \ldots, 19, 20$.
-12. Create the vector: $20, 19, \ldots , 2, 1$.
-13. Create the vector: $1, -2, 3, -4, 5, -6, \ldots, 19, -20$.
-14. Create the vector: $0.1^3, 0.2^1, 0.1^6, 0.2^4, . . . , 0.1^{36}, 0.2^{34}$.
-15. Calculate the following: $\sum_{i=10}^{100}(i^3+4i^2)$ and $\sum_{i=1}^{25}\left( \frac{2^i}{i} + \frac{3^i}{i^2} \right)$.
+11. Crear el vector: $1, 2, 3, \ldots, 19, 20$.
+12. Crear el vector: $20, 19, \ldots , 2, 1$.
+13. Crear el vector: $1, -2, 3, -4, 5, -6, \ldots, 19, -20$.
+14. Crear el vector: $0.1^3, 0.2^1, 0.1^6, 0.2^4, . . . , 0.1^{36}, 0.2^{34}$.
+15. Calcular lo siguiente: $\sum_{i=10}^{100}(i^3+4i^2)$ and $\sum_{i=1}^{25}\left( \frac{2^i}{i} + \frac{3^i}{i^2} \right)$.
 
 
 
