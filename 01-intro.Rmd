@@ -619,7 +619,7 @@ De lo anterior se observa claramente que cuando usamos $ o [[]] el resultado es 
 ---
 
 
-#### Ejercicios
+### Ejercicios
 
 
 1. Use funciones o procedimientos (varias líneas) de R para responder cada una de las siguientes preguntas.
@@ -644,4 +644,3 @@ comic_fav <- c(NA, 'Superman', 'Batman', NA, 'Batman')
 matrix(edad, deporte, comic_fav)
 
 ```
-
