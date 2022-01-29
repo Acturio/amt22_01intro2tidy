@@ -1,10 +1,10 @@
 # Tidyverse
 
-## Consultas de datos
+## Consultas de datos (dplyr)
 
 Ahora que ya sabemos como cargar datos, aprenderemos como manipularlos con *dplyr.* El paquete *dplyr* proporciona un conjunto de funciones muy útiles para manipular data frames y así reducir el número de repeticiones, la probabilidad de cometer errores y el número de caracteres que hay que escribir. Como valor extra, podemos encontrar que la gramática de *dplyr* es más fácil de entender.
 
-Revisaremos algunas de sus funciones más usadas (*verbos*), así como el uso de **pipes** (%>%) para combinarlas.
+Revisaremos algunas de sus funciones **más usadas** (*verbos*), así como el uso de **pipes** (%>%) para combinarlas.
 
 - select()
 
@@ -43,7 +43,7 @@ select_ejemplo<-iris %>% select(Sepal.Length,Petal.Length,Species)
 head(select_ejemplo,10)
 ```
 
-El operador pipe (%>%) se usa para conectar múltiples acciones, en este caso solo le indicamos que de la base iris seleccionara 3 varibles y  que guardara este nuevo data frame en la variable *select_ejemplo*.
+El operador pipe (%>%) se usa para conectar múltiples acciones, en este caso solo le indicamos que en los datos de iris se seleccionan 3 varibles y se guarda este nuevo data frame en la variable *select_ejemplo*.
 
 
 
@@ -74,9 +74,9 @@ Funciones útiles para *select()*:
 
 - *num_range()*: Selecciona las variables por posición.
 
-- *one_of()*: Selecciona variables cuyos nombres están en un grupo de nombres.
-
 - *start_with()*: Selecciona variables cuyos nombres empiezan con la cadena de caracteres.
+
+- *any_of*: Selecciona cualquiera de estas variables, en caso de existir
 
 
 ### filter()
@@ -227,4 +227,21 @@ ejemplo_groupby<- iris %>%
 
 ejemplo_groupby
 ```
+
+### rowwise()
+
+Esta función permite calcular nuevas variables *un renglón a la vez*
+
+```{r}
+iris %>% 
+  rowwise() %>% 
+  mutate(suma = Sepal.Length + Sepal.Width + Petal.Length + Petal.Width) %>% 
+  ungroup()
+
+iris %>% 
+  rowwise() %>% 
+  mutate(suma = sum(across(Sepal.Length:Petal.Width))) %>% 
+  ungroup()
+```
+
 
