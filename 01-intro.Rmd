@@ -1158,12 +1158,12 @@ while (condición) {
 ```
 
 ### Ejemplo {-}
-Suponga que se lanza una moneda en la cual el resultado es cara o sello. Escribir un procedimiento que simule lanzamientos hasta que el número de caras obtenidas sea 5. El procedimiento debe entregar el historial de lanzamientos.
+Suponga que se lanza una moneda en la cual el resultado es cara o cruz. Escribir un procedimiento que simule lanzamientos hasta que el número de caras obtenidas sea 5. El procedimiento debe entregar el historial de lanzamientos.
 
 Para simular el lanzamiento de __una__ moneda se puede usar la función `sample` y definiendo el vector `resultados` con `size=1` para simular un lanzamiento, a continuación el código y tres pruebas ilustrativas.
 
 ```{r}
-resultados <- c('Cara', 'Sello')
+resultados <- c('Cara', 'Cruz')
 sample(x=resultados, size=1)  # Prueba 1
 ```
 
