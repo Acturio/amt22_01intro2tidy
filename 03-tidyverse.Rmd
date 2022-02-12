@@ -358,7 +358,7 @@ knitr::include_graphics("img/03-tidyverse/duplicado2.png")
 ```
 
 
-## Estructura de tablas
+## Órden y reestructuración de tablas
 
 \begin{center}
 "Las familias felices son todas iguales, cada familia infeliz es infeliz  a su propio modo."
@@ -367,6 +367,88 @@ knitr::include_graphics("img/03-tidyverse/duplicado2.png")
 \begin{flushright}
 \text{- Leo Tolstoy}
 \end{flushright}
+
+Un conjunto de datos puede ser representado de muchas maneras distintas y contener en todos los casos la misma información. Sin embargo, no todos los modos en que se presenta la información resulta óptimo para su procesamiento y análisis. Los conjuntos de datos ordenados serán más fáciles de trabajar y analizar.
+
+Algunas de las características principales que presentan los conjuntos de datos ordenados son las siguientes:
+
+1. Cada variable debe tener su propia columna.
+
+2. Cada observación debe tener su propio renglón.
+
+3. Cada valor debe tener su propia celda.
+
+```{r echo=FALSE,fig.align='center', out.width='700pt'}
+knitr::include_graphics("img/03-tidyverse/tidy-1.png")
+```
+
+La figura anterior muestra la estructura de orden que debe tener un conjunto de datos. A pesar de que pueda parecer intuitivo y sencillo, en la práctica es considerable el número de conjuntos de datos desordenados. La limpieza y ordenamiento debe ser trabajado de forma impecable a fin de que puedan realizarse buenas prácticas. El tiempo de limpieza y ordenamiento varía mucho dependiendo de la dimensión del conjunto de datos. 
+
+Algunos de los principales problemas que pueden tener los conjuntos de datos no ordenados son:
+
++ Una variable puede estar dispersa en múltiples columnas
++ Una observación puede estar esparcida en múltiples renglones
+
+La paquetería *tidyr* cuenta con funciones para resolver dichos problemas. Entre las principales funciones que tiene la paquetería, se encuentran *pivot_longer()*, *pivot_wider()*, *separate()* y *unite()*, mismas que se analizarán a continuación. 
+
+### Pivote de anchura
+
+La función *pivot_wider()* resulta muy útil a la hora de organizar los datos. Su función consiste en **dispersar una variable clave en múltiples columnas**.
+
+Lo primero que se debe hacer para poder hacer uso de dicha función es instalar y cargar la librería. 
+
+El siguiente conjunto de datos contiene el número de localidades rurales y urbanas por municipio de la Ciudad de México. Como es posible observar, algunos municipios aparecen más de una vez en el marco de datos, esto se debe a que cada municipio puede tener ambos ámbitos, rural y urbano. Para hacer que el conjunto de datos sea ordenado, es necesario que cada observación aparezca una sola vez por renglón y cada una de las categorías (rural y urbano) de la variable "Ámbito" deberá ocupar el lugar de una columna.
+
+El siguiente código muestra cómo convertir los datos no ordenados en un conjunto ordenado.
+
+```{r}
+library(tidyr)
+
+Resumen <- readRDS("data/loc_mun_cdmx.rds")
+
+Resumen  %>% pivot_wider(
+  names_from = Ambito, 
+  values_from =  Total_localidades
+  )
+```
+
+En la tabla actual existe ahora un y sólo un registro por cada observación (nombre de municipio en este caso). El valor que le corresponde a cada una de las columnas creadas es la frecuencia absoluta de localidades que tienen la característica "Rural" y "Urbano" respectivamente.
+
+Pero... ¿qué pasa cuando no existen todos los valores en ambas columnas? Si no se especifica la manera de llenar los datos faltantes, estos contendrán NAs. Siempre se puede elegir el caracter o número con el cual se imputan los datos faltantes.
+
+```{r}
+fish_encounters %>%
+  pivot_wider(names_from = station, values_from = seen)
+```
+
+
+```{r}
+fish_encounters %>%
+  pivot_wider(names_from = station, values_from = seen, values_fill = 0)
+```
+
+
+En caso de que existan múltiples columnas que se desean dispersar mediante el pivote de una columna con múltiples categorías, es posible especificar tal reestructuración a través del siguiente código.
+
+```{r}
+us_rent_income %>% arrange(NAME)
+us_rent_income %>%
+  pivot_wider(names_from = variable, values_from = c(estimate, moe))
+```
+
+Adicionalmente, se puede especificar una funcion de agregacion que operara antes de acomodar los datos en las respectivas columnas indicadas. Un ejemplo de funciones agregadas en la reestructuración de tabla se muestra a continuación, donde se muestra la media de los valores en las categorías *tension* y *breaks*.
+
+```{r}
+warpbreaks <- as_tibble(warpbreaks[c("wool", "tension", "breaks")])
+warpbreaks
+warpbreaks %>%
+  pivot_wider(
+    names_from = wool,
+    values_from = breaks,
+    values_fn = mean
+  )
+```
+
 
 
 ## Manipulación de texto (stringr)
