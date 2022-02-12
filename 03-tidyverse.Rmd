@@ -533,7 +533,7 @@ str_c(c("Colapsamiento", "de","un","vector","de", "cadenas",
 
 ### Extraer y reemplazar subcadenas
 
-Cuando únicamente interesa un subconjunto de alguna cadena para continuar con el manejo de la información, suele recurrirse a la expresión regular *substr()* de la paquetería básica para extraer este subconjunto de interés. Con stringr, la función para usar esta expresión regular es *str_sub()*. Esta función recibe como parámetros el texto desde el cuál se desea extraer el subconjunto, el índice que marque el inicio de la subcadena y el índice del final de la subcadena.
+Cuando únicamente interesa un **subconjunto de alguna cadena** para continuar con el manejo de la información, suele recurrirse a la expresión regular *substr()* de la paquetería básica para extraer este subconjunto de interés. Con *stringr*, la función para usar esta expresión regular es *str_sub()*. Esta función recibe como parámetros el texto desde el cuál se desea extraer el subconjunto, el índice que marque el inicio de la subcadena y el índice del final de la subcadena.
 
 ```{R}
 str_sub("subcadenas", start = 4, end = 9)
@@ -542,7 +542,7 @@ x <- "00000090060002"
 str_sub(x, start = str_length(x)-8,str_length(x))
 ```
  
-Con la misma función *str_sub()* es posible sustituir parcial o totalmente la cadena "X" que sea introducida como argumento. Ésto se logra asignando a la subcadena seleccionada el valor que se usará para sustituir. En los siguientes ejemplos se muestra cómo modificar la cadena "substring" y la cadena "090060002".
+Con la misma función *str_sub()* es posible **sustituir parcial o totalmente** la cadena "X" que sea introducida como argumento. Ésto se logra asignando a la subcadena seleccionada el valor que se usará para sustituir. En los siguientes ejemplos se muestra cómo modificar la cadena "substring" y la cadena "090060002".
 
 En el primer caso, a partir de la cadena de caracteres "substring" se procede a generar una nueva cadena al sustituir las letras 4 a la 9, reemplazando así la subcadena "string" por "cadena", dando lugar a "subcadena". En el segundo ejemplo, es la clave correspondiente a los dígitos 3 a 5 los que cambian para dar lugar a otra clave numérica.
 
@@ -581,17 +581,18 @@ str_view(sentences,"great", match = TRUE)
 
 ```
 
-\begin{center}
-\includegraphics{img/str_view_great_2.png}
-\end{center}
+```{r echo=FALSE,fig.align='center', out.width='700pt'}
+knitr::include_graphics("img/03-tidyverse/str_view_great_2.png")
+```
+
 
 ```{R, eval=FALSE}
 str_view(sentences,"this", match = TRUE)
 ```
 
-\begin{center}
-\includegraphics{img/str_view_this_2.png}
-\end{center}
+```{r echo=FALSE,fig.align='center', out.width='700pt'}
+knitr::include_graphics("img/03-tidyverse/str_view_this_2.png")
+```
 
 Como es posible apreciarse en los dos ejemplos anteriores, la función *str_view()* filtra los casos coincidentes con los patrones "great" y "this". Esta coincidencia no necesariamente es perfecta. Basta con que un subconjunto de la sentencia coincida con el patrón definido para que la función *str_view()* reconozca como coincidencia válida a toda la cadena.
 
@@ -602,9 +603,10 @@ En caso de no contar con todos los caracteres del patrón deseado o de querer ve
 str_view(sentences,"up.", match = TRUE)
 ```
 
-\begin{center}
-\includegraphics{img/str_view_up.png}
-\end{center}
+```{r echo=FALSE,fig.align='center', out.width='700pt'}
+knitr::include_graphics("img/03-tidyverse/str_view_up.png")
+```
+
 
 Como se puede observar, esta es una manera de detectar subconjuntos de particular interés.
 
@@ -619,31 +621,35 @@ Como se mencionó anteriormente, por default, la coincidencia de patrones se efe
 str_view(words,"^y", match = TRUE)
 ```
 
-\begin{center}
-\includegraphics{img/str_view_^y.png}
-\end{center}
+```{r echo=FALSE,fig.align='center', out.width='700pt'}
+knitr::include_graphics("img/03-tidyverse/str_view_^y.png")
+```
+
+
 
 ```{R, eval=FALSE}
 str_view(words,"x$", match = TRUE)
 ```
 
-\begin{center}
-\includegraphics{img/str_view_x.png}
-\end{center}
+```{r echo=FALSE,fig.align='center', out.width='700pt'}
+knitr::include_graphics("img/03-tidyverse/str_view_x.png")
+```
 
 En caso de desear hacer coincidir todo el contenido de la cadena, deben usarse ambos caracteres especiales para definir el inicio y el final del patrón coincidente como se muestra a continuación. 
 
 ```{R}
 vector <- c("nulo éxito", "poco éxito","éxito moderado","éxito", "éxito total")
 ```
+
 ```{R, eval=FALSE}
 str_view(vector,"^éxito$")
 ```
-\begin{center}
-\includegraphics{img/03-tidyverse/str_view_^exito.png}
-\end{center}
 
-Wickham menciona [@wickham2016r, pag. 203] que, además del caracter especial punto \".\", existen otros cuatro que resultan muy útiles para mostrar patrones particulares.
+```{r echo=FALSE,fig.align='center', out.width='700pt'}
+knitr::include_graphics("img/03-tidyverse/str_view_^exito.png")
+```
+
+Wickham menciona que, además del caracter especial punto \".\", existen otros cuatro que resultan muy útiles para mostrar patrones particulares.
 
 + \\d Hace coincidir cualquier dígito.
 + \\s Hace coincidir cualquier espacio en blanco (espacio, tabulador, salto de línea).
@@ -656,23 +662,25 @@ Al momento de definir cualquiera de estos 4 patrones coincidentes será necesari
 ```{R}
 cadena <- "El año 2018 fue un año de mucho crecimiento personal."
 ```
+
 ```{R, eval=FALSE}
 str_view(cadena,"\\d")
 ```
 
-\begin{center}
-\includegraphics{img/03-tidyverse/str_view_2018_1.png}
-\end{center}
+```{r echo=FALSE,fig.align='center', out.width='700pt'}
+knitr::include_graphics("img/03-tidyverse/str_view_2018_1.png")
+```
 
-Wickham menciona [@wickham2016r, pag. 204] que, "es posible usar alternancias para elegir entre uno o más patrones alternativos. Por ejemplo, abc|d..f coincidirá con "abc" o con "deaf". Haciendo notar que la prioridad para el operador \"|\" es baja, por lo que abc|xyz coincide con abc o xyz, no con abcyz o abxyz. Al igual que en las matemáticas, si existe ambigüedad en la prioridad de las operaciones, usar paréntesis lo hará todo más claro."
+Wickham menciona que, "es posible usar alternancias para elegir entre uno o más patrones alternativos. Por ejemplo, abc|d..f coincidirá con "abc" o con "deaf". Haciendo notar que la prioridad para el operador \"|\" es baja, por lo que abc|xyz coincide con abc o xyz, no con abcyz o abxyz. Al igual que en las matemáticas, si existe ambigüedad en la prioridad de las operaciones, usar paréntesis lo hará todo más claro."
 
 ```{R, eval=FALSE}
 str_view(c("tamaño","tasa","tata","taza","tapa"),"ta(s|z)a")
 ```
 
-\begin{center}
-\includegraphics{img/03-tidyverse/str_view_tasza_2.png}
-\end{center}
+```{r echo=FALSE,fig.align='center', out.width='700pt'}
+knitr::include_graphics("img/03-tidyverse/str_view_tasza_2.png")
+```
+
 
 **Repeticiones**
 
@@ -685,29 +693,31 @@ El siguiente paso en complejidad para las expresiones regulares es, controlar el
 ```{R}
 x <- "1888 es el año más largo en números romanos: MDCCCLXXXVIII"
 ```
+
 ```{R, eval=FALSE}
 str_view(x,"XX?")
 ```
 
-\begin{center}
-\includegraphics{img/03-tidyverse/str_view_2018_XX.png}
-\end{center}
+```{r echo=FALSE,fig.align='center', out.width='700pt'}
+knitr::include_graphics("img/03-tidyverse/str_view_2018_XX.png")
+```
+
 
 ```{R, eval=FALSE}
 str_view(x,"XX+")
 ```
 
-\begin{center}
-\includegraphics{img/03-tidyverse/str_view_2018_XX+.png}
-\end{center}
+```{r echo=FALSE,fig.align='center', out.width='700pt'}
+knitr::include_graphics("img/03-tidyverse/str_view_2018_XXmas.png")
+```
 
 ```{R, eval=FALSE}
 str_view(x,"C[LX]+")
 ```
 
-\begin{center}
-\includegraphics{img/03-tidyverse/str_view_2018_C[LX]+.png}
-\end{center}
+```{r echo=FALSE,fig.align='center', out.width='700pt'}
+knitr::include_graphics("img/03-tidyverse/str_view_2018_CLX.png")
+```
 
 Es posible especificar el número de repeticiones que se desea hacer coincidir un patrón. Ya sea de manera exacta o dentro de un intervalo. Esta repetición en el patrón se define de la siguiente manera.
 
@@ -720,17 +730,17 @@ Es posible especificar el número de repeticiones que se desea hacer coincidir u
 str_view(x,"X{3}")
 ```
 
-\begin{center}
-\includegraphics{img/03-tidyverse/str_view_2018_X{3}.png}
-\end{center}
+```{r echo=FALSE,fig.align='center', out.width='700pt'}
+knitr::include_graphics("img/03-tidyverse/str_view_2018_X{3}.png")
+```
 
 ```{R, eval=FALSE}
 str_view(x,"X{1,2}")
 ```
 
-\begin{center}
-\includegraphics{img/03-tidyverse/str_view_2018_X{1,2}.png}
-\end{center}
+```{r echo=FALSE,fig.align='center', out.width='700pt'}
+knitr::include_graphics("img/03-tidyverse/str_view_2018_X{1,2}.png")
+```
 
 **Herramientas**
 
@@ -916,7 +926,7 @@ Habiendo platicado de esto, podemos hablar de uno de los temas importantes en mu
 
 
 
-## Manipulación de fechas
+## Manipulación de fechas y horas
 
 
 
