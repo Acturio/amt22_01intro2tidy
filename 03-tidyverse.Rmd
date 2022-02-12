@@ -230,8 +230,16 @@ ejemplo_groupby
 
 ### rowwise()
 
-Esta función permite calcular nuevas variables *un renglón a la vez*
+Esta función permite calcular nuevas variables *un renglón a la vez*.
 
+```{r}
+iris %>% 
+  mutate(suma = sum(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width)) %>% 
+  ungroup()
+```
+¿Qué pasó en el ejemplo pasado?
+
+Ahora veamos qué pasa al intriducir rowwise al pipeline
 ```{r}
 iris %>% 
   rowwise() %>% 
@@ -243,6 +251,113 @@ iris %>%
   mutate(suma = sum(across(Sepal.Length:Petal.Width))) %>% 
   ungroup()
 ```
+
+## Cruces de tablas
+
+Una operación fundamental por agregar a nuestro flujo de trabajo es el cruce de tablas, las cuales pueden proceder de la misma o de distinta fuente. Comúnmente **este proceso se realiza para enriquecer y unificar la información** proveniente de distintas tablas de datos. 
+
+Para lograr esta tarea es indispensable que exista una variable **llave** en ambos conjuntos de datos que sirva como puente o identificador de cada caso o renglón. Si se cuenta con la columna llave entonces será posible cruzar las tablas y lograr su enriquecimiento.
+
+En el siguiente ejemplo se muestra el uso de la variable llave a través de la columna "ID". Se puede apreciar que en la tabla final se cuenta con información de la variable "Weight" para los elementos que existen en las tablas "A" y "B". 
+
+```{r echo=FALSE,fig.align='center', out.width='700pt'}
+knitr::include_graphics("img/03-tidyverse/left_join3.png")
+```
+
+La función que hace posible el complemento de la información es llamada *left_join()*. El primer argumento de la función corresponde al conjunto de datos que se desea complementar, mientras que en el segundo argumento se ingresa el conjunto de datos con la información que enriquecerá al primer conjunto. Es necesario especificar en el argumento *"by"* el nombre de la columna llave.
+
+```{r}
+
+conjuntoX <- data.frame("Llave" = LETTERS[1:8], "C1" = 1:8)
+
+conjuntoY <- data.frame("Llave" = sample(LETTERS[11:3], size = 9, replace = T), 
+                        "Ex1" = letters[2:10], 
+                        "Ex2" = 1002:1010,"Ex3" = paste0(letters[12:20],2:10))
+
+conjuntoX
+
+conjuntoY
+
+left_join(x = conjuntoX, y = conjuntoY, by = "Llave")
+
+```
+
+
+Es posible que no todas las observaciones de un conjunto de datos estén en el otro conjunto, cuando esto sucede un aviso aparece indicando que los factores o categorías de la variable llave son diferentes. En caso de no encontrarse uno o más de los valores, el resultado para esos casos será NA (no disponible, por su traducción del inglés "Not Available"), y aparecerá siempre que no se cuente con información en un registro, como se muestra en el ejemplo anterior.
+
+Existen diferentes maneras de conjuntar datos. La primera, como en el ejemplo mostrado anteriormente, se hace por lo izquierda y quiere decir que, **al primer conjunto de datos es al que se le agregará la información del segundo conjunto**. Esto se realizará exclusivamente para aquellos registros del segundo conjunto que existan en el primero, los cuales se identifican mediante la llave definida. 
+
+Otra manera de realizar la conjunción de los datos es por la derecha. Funciona de manera análoga a la primera, con la diferencia de que son los datos del primer conjunto los que se agregan al segundo. De igual manera, esto sólo ocurre para los elemento del primer conjunto que se encuentran en el segundo y que son identificables a través de una llave. La función en *R* que permite realizar la conjunción por la derecha lleva por nombre *right_join()*.
+
+```{r}
+right_join(x = conjuntoX, y = conjuntoY, by = "Llave")
+```
+
+Una tercer forma de unir los datos es a través de la función *full_join()*, la cual es una combinación de las dos anteriores. Agrega todos los elementos llave tanto del primer conjunto como del segundo y posteriormente realiza el cruce de información de ambos conjuntos.
+
+```{r}
+full_join(x = conjuntoX, y = conjuntoY, by = "Llave")
+```
+
+Estos 3 primeros métodos pueden resumirse en la siguiente imagen:
+
+```{r echo=FALSE,fig.align='center', out.width='700pt'}
+knitr::include_graphics("img/03-tidyverse/left_right_full_join.png")
+```
+
+Adicionalmente, existen otras funciones que ayudan con gestionar las operaciones entre conjuntos de datos. Tal es el caso de la función *inner_join()*, la cuál no es otra cosa que el filtro de aquellos elementos que se tengan en común en ambas tablas y la combinación de un *join*. Internamente, la función primero filtra el ID de aquellos elementos que tienen presencia en ambas tablas y finalmente hace el cruce de los datos.
+
+```{r echo=FALSE,fig.align='center', out.width='700pt'}
+knitr::include_graphics("img/03-tidyverse/inner_join.png")
+```
+
+```{r}
+inner_join(x = conjuntoX, y = conjuntoY, by = "Llave")
+```
+
+Existen otras dos operaciones interesantes que agilizan la extracción de subconjuntos de tablas sin cruzar información. Se trata de las funciones *semi_join()* y *anti_join()*, las cuales funcionan de la siguiente manera:
+
+La función *semi_join()* detecta y filtra los elementos del primer conjunto que se encuentran en un segundo conjunto, mientras que la función *anti_join()* es su complemento, pues regresa los elementos del primer conjunto que no se encuentran en el segundo. En ambos casos, la información contenida en el segundo conjunto no es trasmitida al resultado. 
+
+```{r echo=FALSE,fig.align='center', out.width='700pt'}
+knitr::include_graphics("img/03-tidyverse/semi_join.png")
+```
+
+A continuación se presenta su ejemplificación:
+
+```{r}
+semi_join(x = conjuntoX, y = conjuntoY, by = "Llave")
+```
+Ahora revisemos el caso de la función *anti_join()*
+
+```{r echo=FALSE,fig.align='center', out.width='700pt'}
+knitr::include_graphics("img/03-tidyverse/anti_join.png")
+```
+
+```{r}
+anti_join(x = conjuntoX, y = conjuntoY, by = "Llave")
+```
+
+**WARNING: llaves duplicadas**
+
+La mayoría de los ejemplos anteriores suponen que las llaves son únicas en cada conjunto de datos, sin embargo, esto no es cierto en una gran cantidad de ocasiones. Existen dos casos importantes por analizar:
+
+* Llaves duplicadas en 1 conjunto de datos
+* Llaves duplicadas en ambos conjuntos
+
+El caso más sencillo es cuando solo uno de los conjuntos contiene llaves duplicadas. En este caso se creará un renglón por cada duplicado.
+
+```{r echo=FALSE,fig.align='center', out.width='700pt'}
+knitr::include_graphics("img/03-tidyverse/duplicado1.png")
+```
+
+En el segundo caso, por cada elemento duplicado en el primer conjunto habrá como resultado un elemento por cada duplicado en el segundo conjunto. A continuación se ejemplifica este escenario.
+
+```{r echo=FALSE,fig.align='center', out.width='700pt'}
+knitr::include_graphics("img/03-tidyverse/duplicado2.png")
+```
+
+
 
 
 
