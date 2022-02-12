@@ -454,13 +454,11 @@ warpbreaks %>%
 ## Manipulación de texto (stringr)
 
 
-Anteriormente se mencionaron algunas paqueterías que están incluídas dentro del conjunto Tidyverse. La paquetería stringr no forma parte del núcleo de Tidyverse, no obstante, sí pertenece a dicho conjunto y es ampliamente usada junto a las paqueterías nucleares debido a la facilidad que tiene para trabajar con cadenas, textos y espresiones regulares en general. Las expresiones regulares, también conocidas como **regex** o **regexp**, son patrones de texto repetidos en los datos y que son usados para operar con otras cadenas de texto. El resultado de dichas operaciones es obtener o resumir información, además de manipular y ordenar los conjuntos de datos. Entre las principales operaciones se encuentran los conteos, concatenaciones, separaciones, búsquedas, extracciones, imputaciones y sustituciones.
-
-Estas operaciones serán de gran ayuda para manipular la información del conjunto de datos y así crear un marco muestral que esté en condiciones óptimas para su uso.
+Anteriormente se mencionaron algunas paqueterías que están incluídas dentro del conjunto Tidyverse. La paquetería stringr no forma parte del núcleo de Tidyverse, no obstante, sí pertenece a dicho conjunto y es ampliamente usada junto a las paqueterías nucleares debido a la facilidad que tiene para trabajar con cadenas, textos y espresiones regulares en general. Las expresiones regulares, también conocidas como *regex* o *regexp*, **son patrones de texto repetidos en los datos y que son usados para operar con otras cadenas de texto**. El resultado de dichas operaciones es obtener o resumir información, además de manipular y ordenar los conjuntos de datos. Entre las principales operaciones se encuentran los conteos, concatenaciones, separaciones, búsquedas, extracciones, imputaciones y sustituciones.
 
 ### Caracteres especiales
 
-Debido a que la paquetería *stringr* [@stringr] trabaja principalmente con cadenas de textos, es importante tener en cuenta que los objetos de caracteres se definen a través de comillas, ya sea simples o dobles. La única diferencia está en el caso en que se pretendan usar comillas como parte del texto. En estos casos, la comilla simple es preferible para ser la que defina el texto.
+Debido a que la paquetería *stringr* trabaja principalmente con cadenas de texto, es importante tener en cuenta que **los objetos de caracteres se definen a través de comillas**, ya sea simples o dobles. La única diferencia está en el caso en que se pretendan usar comillas como parte del texto. En estos casos, la comilla simple es preferible para ser la que defina el texto.
 
 ```{R}
 library(stringr)
@@ -480,7 +478,7 @@ print(Cadena4)
 
 Como es posible apreciar en los ejemplos anteriores, la cadena 3 y 4 no se imprimen exactamente como se definieron. Podría parecer que existe un error, ya que aparecen diagonales antes de los caracteres deseados. Para resolver este problema, únicamente es necesario mandar llamar a la función *cat()* . Esta función sirve como intérprete de los caracteres que se definen en una cadena.
 
-La función *cat()* sirve como sustituto de la función *print()* (cuya función es imprimir de forma literal lo que existe dentro de las comillas), con la diferencia de que *cat()* interpreta las salidas de caracteres especiales en el texto y concatena las salidas finales con el separador específico que se indique. Por default, el separador es un espacio vacío, sin embargo, es posible modificarlo. A continuación se ejemplifica su uso.
+La función *cat()* **sirve como sustituto** de la función *print()* (cuya función es imprimir de forma literal lo que existe dentro de las comillas), con la diferencia de que *cat()* **interpreta las salidas** de caracteres especiales en el texto y concatena las salidas finales con el separador específico que se indique. Por default, el separador es un espacio vacío, sin embargo, es posible modificarlo. A continuación se ejemplifica su uso.
 
 ```{R}
 cat(Cadena3)
@@ -504,15 +502,13 @@ str_length(c("Un","vector","con","diferente","cantidad","de","carecteres","por",
 
 Puede usarse la función tanto para objetos de cadenas individuales como para vectores.
 
-
-Existen muchos set de datos que durante su manipulacion podemos encontrar claves alfanuméricas,que pueden ser necesarias unir información relevante o para crear claves de identificación única, por ejemplo poder unir el nombre completo de las personas dentro de una base de datos. Uniendo Nombre + Segundo Nombre + Primer Apellido + Segundo Apellido. 
+Existen muchos conjuntos de datos que durante su manipulacion podemos encontrar claves alfanuméricas, que pueden ser necesarias **unir información** relevante o para crear claves de identificación única, por ejemplo poder unir el nombre completo de las personas dentro de una base de datos. Uniendo Nombre + Segundo Nombre + Primer Apellido + Segundo Apellido. 
 
 Por otro lado de esto puede extraerse información sobre la CURP o en algunos otros ejemplos la unión de un ID +  una matricula de carrera + el año pueden ser el registro para un estudiante ó  podrias querer replicar mensajes para alertas que dependan de una variable. 
 
-
 ### Concatenar cadenas
 
-Concatenar cadenas es una de las prácticas constantes en el manejo de conjuntos de datos. La función de la paquetería básica que se encarga de dicha tarea es la función *paste()*. A través de la paquetería *stringr* se logrará el concatenado mediante la función *str_c()*. Existe la opción de definir el caracter que hará la combinación de las cadenas mediante el argumento "sep", que por default no deja ni un espacio entre las cadenas a combinar. Varios ejemplos se mostrarán a continuación.
+Concatenar cadenas es una de las prácticas constantes en el manejo de conjuntos de datos. La función de la paquetería básica que se encarga de dicha tarea es la función *paste()*. A través de la paquetería *stringr* se logrará el **concatenado** mediante la función *str_c()*. Existe la opción de definir el caracter que hará la combinación de las cadenas mediante el argumento "sep", que por default no deja ni un espacio entre las cadenas a combinar. Varios ejemplos se mostrarán a continuación.
 
 ```{R}
 str_c("Concatenado", "de","varias", "cadenas", "sin","espacios")
@@ -644,7 +640,7 @@ vector <- c("nulo éxito", "poco éxito","éxito moderado","éxito", "éxito tot
 str_view(vector,"^éxito$")
 ```
 \begin{center}
-\includegraphics{img/str_view_^exito.png}
+\includegraphics{img/03-tidyverse/str_view_^exito.png}
 \end{center}
 
 Wickham menciona [@wickham2016r, pag. 203] que, además del caracter especial punto \".\", existen otros cuatro que resultan muy útiles para mostrar patrones particulares.
@@ -665,7 +661,7 @@ str_view(cadena,"\\d")
 ```
 
 \begin{center}
-\includegraphics{img/str_view_2018_1.png}
+\includegraphics{img/03-tidyverse/str_view_2018_1.png}
 \end{center}
 
 Wickham menciona [@wickham2016r, pag. 204] que, "es posible usar alternancias para elegir entre uno o más patrones alternativos. Por ejemplo, abc|d..f coincidirá con "abc" o con "deaf". Haciendo notar que la prioridad para el operador \"|\" es baja, por lo que abc|xyz coincide con abc o xyz, no con abcyz o abxyz. Al igual que en las matemáticas, si existe ambigüedad en la prioridad de las operaciones, usar paréntesis lo hará todo más claro."
@@ -675,7 +671,7 @@ str_view(c("tamaño","tasa","tata","taza","tapa"),"ta(s|z)a")
 ```
 
 \begin{center}
-\includegraphics{img/str_view_tasza_2.png}
+\includegraphics{img/03-tidyverse/str_view_tasza_2.png}
 \end{center}
 
 **Repeticiones**
@@ -694,7 +690,7 @@ str_view(x,"XX?")
 ```
 
 \begin{center}
-\includegraphics{img/str_view_2018_XX.png}
+\includegraphics{img/03-tidyverse/str_view_2018_XX.png}
 \end{center}
 
 ```{R, eval=FALSE}
@@ -702,7 +698,7 @@ str_view(x,"XX+")
 ```
 
 \begin{center}
-\includegraphics{img/str_view_2018_XX+.png}
+\includegraphics{img/03-tidyverse/str_view_2018_XX+.png}
 \end{center}
 
 ```{R, eval=FALSE}
@@ -710,7 +706,7 @@ str_view(x,"C[LX]+")
 ```
 
 \begin{center}
-\includegraphics{img/str_view_2018_C[LX]+.png}
+\includegraphics{img/03-tidyverse/str_view_2018_C[LX]+.png}
 \end{center}
 
 Es posible especificar el número de repeticiones que se desea hacer coincidir un patrón. Ya sea de manera exacta o dentro de un intervalo. Esta repetición en el patrón se define de la siguiente manera.
@@ -725,7 +721,7 @@ str_view(x,"X{3}")
 ```
 
 \begin{center}
-\includegraphics{img/str_view_2018_X{3}.png}
+\includegraphics{img/03-tidyverse/str_view_2018_X{3}.png}
 \end{center}
 
 ```{R, eval=FALSE}
@@ -733,7 +729,7 @@ str_view(x,"X{1,2}")
 ```
 
 \begin{center}
-\includegraphics{img/str_view_2018_X{1,2}.png}
+\includegraphics{img/03-tidyverse/str_view_2018_X{1,2}.png}
 \end{center}
 
 **Herramientas**
@@ -915,7 +911,7 @@ str_locate(x,"-\\d{2,}")
 
 El ejemplo anterior muestra la manera en la que se localizan los índices iniciales y finales de los caracteres posteriores al símbolo "-", que cumplan con tener al menos 2 dígitos. Hay que tomar en cuenta que bajo esta forma de extraer los índices, la posición del caracter "-" está incluida y es ahí donde inicia el conteo.
 
-Habiendo platicado de esto, podemos hablar de uno de los temas importantes en muchas ocasiones complerjos de la manipulación de datos...  las fechas. 
+Habiendo platicado de esto, podemos hablar de uno de los temas importantes en muchas ocasiones complejos de la manipulación de datos...  las fechas. 
 
 
 
