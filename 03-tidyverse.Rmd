@@ -465,9 +465,12 @@ relig_income
 
 
 Este conjunto de datos contiene tres variables: 
- 1) religion, almacenada en las filas; 
- 2) income repartidos entre los nombres de columna; y 
- 3) count almacenado en los valores de las celdas. 
+
+1) religion, almacenada en las filas
+
+2) income repartidos entre los nombres de columna
+
+3) count almacenado en los valores de las celdas. 
  
  
  Para ordenarlo usamos _pivot_longer()_:
