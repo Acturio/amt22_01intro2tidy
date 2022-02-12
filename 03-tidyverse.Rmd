@@ -391,7 +391,7 @@ Algunos de los principales problemas que pueden tener los conjuntos de datos no 
 
 La paquetería *tidyr* cuenta con funciones para resolver dichos problemas. Entre las principales funciones que tiene la paquetería, se encuentran *pivot_longer()*, *pivot_wider()*, *separate()* y *unite()*, mismas que se analizarán a continuación. 
 
-### Pivote de anchura
+### Pivote horizontal
 
 La función *pivot_wider()* resulta muy útil a la hora de organizar los datos. Su función consiste en **dispersar una variable clave en múltiples columnas**.
 
@@ -448,6 +448,41 @@ warpbreaks %>%
     values_fn = mean
   )
 ```
+
+
+### Pivote vertical 
+
+*pivot_longer()* es podría ser la función inversa de la anterior, se necesita comúnmente para ordenar los conjuntos de datos capturados en crudo, ya que a menudo no son capturados a corde a las mejores estructuras para facilitar el análisis. 
+
+El conjunto de datos _relig_income_ almacena recuentos basados en una encuesta que (entre otras cosas) preguntó a las personas sobre su religión e ingresos anuales:
+
+
+
+```{r}
+relig_income
+```
+¿Crees que ésta es la mejor estructura para la tabla? ¿Cómo imaginas que podría mofificarse? 
+
+
+Este conjunto de datos contiene tres variables: 
+ 1) religion, almacenada en las filas; 
+ 2) income repartidos entre los nombres de columna; y 
+ 3) count almacenado en los valores de las celdas. 
+ 
+ 
+ Para ordenarlo usamos _pivot_longer()_:
+
+
+```{r}
+relig_income %>% 
+  pivot_longer(-religion,
+               names_to = "income", 
+               values_to = "count")
+```
+* El primer argumento es el conjunto de datos para remodelar, relig_income.
+* El segundo argumento describe qué columnas necesitan ser reformadas. En este caso, es cada columna aparte de religion.
+* El _names_to_ da el nombre de la variable que se creará a partir de los datos almacenados en los nombres de columna, es decir, ingresos.
+* Los _values_to_ dan el nombre de la variable que se creará a partir de los datos almacenados en el valor de la celda, es decir, count. Ni la columna names_to ni la values_to existen en relig_income, por lo que las proporcionamos como cadenas de caracteres entre comillas.
 
 
 
