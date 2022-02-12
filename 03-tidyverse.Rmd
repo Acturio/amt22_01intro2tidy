@@ -454,6 +454,472 @@ warpbreaks %>%
 ## Manipulación de texto (stringr)
 
 
+Anteriormente se mencionaron algunas paqueterías que están incluídas dentro del conjunto Tidyverse. La paquetería stringr no forma parte del núcleo de Tidyverse, no obstante, sí pertenece a dicho conjunto y es ampliamente usada junto a las paqueterías nucleares debido a la facilidad que tiene para trabajar con cadenas, textos y espresiones regulares en general. Las expresiones regulares, también conocidas como **regex** o **regexp**, son patrones de texto repetidos en los datos y que son usados para operar con otras cadenas de texto. El resultado de dichas operaciones es obtener o resumir información, además de manipular y ordenar los conjuntos de datos. Entre las principales operaciones se encuentran los conteos, concatenaciones, separaciones, búsquedas, extracciones, imputaciones y sustituciones.
+
+Estas operaciones serán de gran ayuda para manipular la información del conjunto de datos y así crear un marco muestral que esté en condiciones óptimas para su uso.
+
+### Caracteres especiales
+
+Debido a que la paquetería *stringr* [@stringr] trabaja principalmente con cadenas de textos, es importante tener en cuenta que los objetos de caracteres se definen a través de comillas, ya sea simples o dobles. La única diferencia está en el caso en que se pretendan usar comillas como parte del texto. En estos casos, la comilla simple es preferible para ser la que defina el texto.
+
+```{R}
+library(stringr)
+
+Cadena1 <- "Se definen cadenas a través de comillas dobles"
+print(Cadena1)
+
+Cadena2 <- 'También es posible con comillas simples y el resultado es el mismo'
+print(Cadena2)
+
+Cadena3 <- 'Se pueden implementar "comillas" dentro de la cadena'
+print(Cadena3)
+
+Cadena4 <- 'Esta es otra forma de incluir \"comillas\" dentro de un texto'
+print(Cadena4)
+```
+
+Como es posible apreciar en los ejemplos anteriores, la cadena 3 y 4 no se imprimen exactamente como se definieron. Podría parecer que existe un error, ya que aparecen diagonales antes de los caracteres deseados. Para resolver este problema, únicamente es necesario mandar llamar a la función *cat()* . Esta función sirve como intérprete de los caracteres que se definen en una cadena.
+
+La función *cat()* sirve como sustituto de la función *print()* (cuya función es imprimir de forma literal lo que existe dentro de las comillas), con la diferencia de que *cat()* interpreta las salidas de caracteres especiales en el texto y concatena las salidas finales con el separador específico que se indique. Por default, el separador es un espacio vacío, sin embargo, es posible modificarlo. A continuación se ejemplifica su uso.
+
+```{R}
+cat(Cadena3)
+
+cat(Cadena4)
+```
+
+A través del operador diagonal invertida "\\" también es posible definir comillas de manera literal. En caso de querer escribir textualmente una diagonal invertida, se necesitará escribir entre comillas dos diagonales invertidas "\\\\". Existen otros caracteres espaciales que ayudan a mejorar el formato de las cadenas. Algunos de los caracteres más comunes son "\\n" (nueva línea) y "\\t" (tabulador). 
+
+Todas las funciones que se presentarán a continuación, son posibles encontrarlas con otro nombre dentro de la paquetería básica. La ventaja que tienen las funciones de la paquetería *stringr* es que, los nombres son más intuitivos y comienzan con el mismo prefijo "str_", haciendo que al escribir las primeras tres letras, la función de autocompletar de RStudio muestre una lista con sugerencias de los nombres de las posibles funciones a usarse. 
+
+### Tamaño de la cadena
+
+Es común que al procesar los conjuntos de datos, se requiera contar el número de caracteres que tiene una cadena. La paquetería básica cuenta con la función *nchar()* para realizar esta tarea. Con la ayuda de la paquetería *stringr*, es posible realizar esta misma tarea a través de la función *str_length()*
+
+```{R}
+str_length("Esta es una cadena de 35 caracteres")
+
+str_length(c("Un","vector","con","diferente","cantidad","de","carecteres","por","cadena"))
+```
+
+Puede usarse la función tanto para objetos de cadenas individuales como para vectores.
+
+
+Existen muchos set de datos que durante su manipulacion podemos encontrar claves alfanuméricas,que pueden ser necesarias unir información relevante o para crear claves de identificación única, por ejemplo poder unir el nombre completo de las personas dentro de una base de datos. Uniendo Nombre + Segundo Nombre + Primer Apellido + Segundo Apellido. 
+
+Por otro lado de esto puede extraerse información sobre la CURP o en algunos otros ejemplos la unión de un ID +  una matricula de carrera + el año pueden ser el registro para un estudiante ó  podrias querer replicar mensajes para alertas que dependan de una variable. 
+
+
+### Concatenar cadenas
+
+Concatenar cadenas es una de las prácticas constantes en el manejo de conjuntos de datos. La función de la paquetería básica que se encarga de dicha tarea es la función *paste()*. A través de la paquetería *stringr* se logrará el concatenado mediante la función *str_c()*. Existe la opción de definir el caracter que hará la combinación de las cadenas mediante el argumento "sep", que por default no deja ni un espacio entre las cadenas a combinar. Varios ejemplos se mostrarán a continuación.
+
+```{R}
+str_c("Concatenado", "de","varias", "cadenas", "sin","espacios")
+
+str_c("Concatenado","con","espacios", sep=" ")
+
+str_c("separando","mediante","otro","caracter","definido", sep="-")
+
+str_c("Valores",str_c("09","006"),"anidados también se pueden concatenar",sep=" ")
+```
+
+
+Es posible, al igual que con la función *paste()*, colapsar todas las cadenas de un vector en una sola cadena mediante el mismo parámetro: "collapse". El caracter que divide a los elementos del vector debe ser especificado entre comillas, de lo contrario el valor por default será \" \".
+
+```{R}
+str_c(c("Colapsamiento", "de","un","vector","de", "cadenas", "en","una",
+        "sola","cadena"), collapse = " ")
+
+str_c(c("Colapsamiento", "de","un","vector","de", "cadenas",
+        "separado","por","signos"), collapse = "+")
+```
+
+### Extraer y reemplazar subcadenas
+
+Cuando únicamente interesa un subconjunto de alguna cadena para continuar con el manejo de la información, suele recurrirse a la expresión regular *substr()* de la paquetería básica para extraer este subconjunto de interés. Con stringr, la función para usar esta expresión regular es *str_sub()*. Esta función recibe como parámetros el texto desde el cuál se desea extraer el subconjunto, el índice que marque el inicio de la subcadena y el índice del final de la subcadena.
+
+```{R}
+str_sub("subcadenas", start = 4, end = 9)
+
+x <- "00000090060002"
+str_sub(x, start = str_length(x)-8,str_length(x))
+```
+ 
+Con la misma función *str_sub()* es posible sustituir parcial o totalmente la cadena "X" que sea introducida como argumento. Ésto se logra asignando a la subcadena seleccionada el valor que se usará para sustituir. En los siguientes ejemplos se muestra cómo modificar la cadena "substring" y la cadena "090060002".
+
+En el primer caso, a partir de la cadena de caracteres "substring" se procede a generar una nueva cadena al sustituir las letras 4 a la 9, reemplazando así la subcadena "string" por "cadena", dando lugar a "subcadena". En el segundo ejemplo, es la clave correspondiente a los dígitos 3 a 5 los que cambian para dar lugar a otra clave numérica.
+
+```{R}
+y <- "substring"
+str_sub(y, start = 4, end = 9) <- "cadena"; y
+
+x <- "090060002"
+str_sub(x, start = str_length(x)-6,str_length(x)-4) <- "555"; x 
+```
+ 
+Lo anterior es ampliamente usado en el proceso de limpieza de los datos. A veces es posible encontrar errores ortográficos o los llamados errores "de dedo" (hacen referencia a errores accidentales al escribir) que se dan a la hora de capturar la información. Cuando una gran cantidad de datos presentan el mismo error, es buena idea recurrir a esta función.
+ 
+### Expresiones regulares
+
+En el estudio de las expresiones regulares se puede encontrar de manera sobresaliente la aplicación de los *patrones coincidentes*, los cuáles sirven para describir y descubrir coincidencias de interés en conjuntos específicos a partir de cadenas de caracteres.
+
+Con el fin de comprender y visualizar de manera práctica el uso de los patrones coincidentes con las expresiones regulares, se hará uso de la función *str_view()*, que permite distinguir los elementos coincidentes de un vector con un patrón de caracteres descrito. 
+
+La paquetería *stringr* cuenta con tres conjuntos predefinidos de oraciones y palabras que sirven para ejemplificar el uso de las expresiones regulares. Estos conjuntos llevan el nombre de **sentences, words y fruit**, su contenido es de sentencias, palabras y nombres de frutas. En los tres casos, estos conjuntos han sido escritos en inglés. Los conjuntos sirven bien para ejemplificar el uso de las siguientes funciones y de las expresiones regulares.
+
+```{R}
+head(sentences, 10)
+
+head(words,20)
+
+head(fruit,20)
+
+```
+
+Para realizar una coincidencia de patrones, es necesario ingresar como argumento el vector de cadenas de caracteres en donde se desea hacer la búsqueda. Como segundo argumento, se ingresa el patrón con el cuál se desea buscar las coincidencias. Para que únicamente se muestren las coincidencias exitosas se debe agregar el argumento match = TRUE. 
+
+
+```{R, eval=FALSE}
+str_view(sentences,"great", match = TRUE)
+
+```
+
+\begin{center}
+\includegraphics{img/str_view_great_2.png}
+\end{center}
+
+```{R, eval=FALSE}
+str_view(sentences,"this", match = TRUE)
+```
+
+\begin{center}
+\includegraphics{img/str_view_this_2.png}
+\end{center}
+
+Como es posible apreciarse en los dos ejemplos anteriores, la función *str_view()* filtra los casos coincidentes con los patrones "great" y "this". Esta coincidencia no necesariamente es perfecta. Basta con que un subconjunto de la sentencia coincida con el patrón definido para que la función *str_view()* reconozca como coincidencia válida a toda la cadena.
+
+En caso de no contar con todos los caracteres del patrón deseado o de querer ver todas las combinaciones que tengan un patrón adyacente común, es posible ingresar un "comodín" a través del caracter punto \".\", el cuál coincidirá con cualquier caracter. Este caracter especial puede usarse al principio, al final o de manera intermedia dentro del patrón.
+
+
+```{R, eval=FALSE}
+str_view(sentences,"up.", match = TRUE)
+```
+
+\begin{center}
+\includegraphics{img/str_view_up.png}
+\end{center}
+
+Como se puede observar, esta es una manera de detectar subconjuntos de particular interés.
+
+**Anclajes**
+
+Como se mencionó anteriormente, por default, la coincidencia de patrones se efectuará sobre cualquier subconjunto de la cadena de caracteres. Es posible definir el caracter inicial y/o el caracter final con el cuál se buscará la coincidencia de patrones. Esto se logra al hacer uso de los siguientes caracteres especiales.
+
++ ^ Para hacer coincidir el inicio de la cadena
++ $ Para hacer coincidir el final de la cadena
+
+```{R, eval=FALSE}
+str_view(words,"^y", match = TRUE)
+```
+
+\begin{center}
+\includegraphics{img/str_view_^y.png}
+\end{center}
+
+```{R, eval=FALSE}
+str_view(words,"x$", match = TRUE)
+```
+
+\begin{center}
+\includegraphics{img/str_view_x.png}
+\end{center}
+
+En caso de desear hacer coincidir todo el contenido de la cadena, deben usarse ambos caracteres especiales para definir el inicio y el final del patrón coincidente como se muestra a continuación. 
+
+```{R}
+vector <- c("nulo éxito", "poco éxito","éxito moderado","éxito", "éxito total")
+```
+```{R, eval=FALSE}
+str_view(vector,"^éxito$")
+```
+\begin{center}
+\includegraphics{img/str_view_^exito.png}
+\end{center}
+
+Wickham menciona [@wickham2016r, pag. 203] que, además del caracter especial punto \".\", existen otros cuatro que resultan muy útiles para mostrar patrones particulares.
+
++ \\d Hace coincidir cualquier dígito.
++ \\s Hace coincidir cualquier espacio en blanco (espacio, tabulador, salto de línea).
++ [abc] Hace coincidir a, b ó c.
++ [^abc] Coincide con cualquier cosa excepto a, b ó c.
+
+Al momento de definir cualquiera de estos 4 patrones coincidentes será necesario usar doble diagonal invertida. Por ejemplo, "\\\\d" será el patrón para encontrar la coincidencia con cualquier dígito.
+
+
+```{R}
+cadena <- "El año 2018 fue un año de mucho crecimiento personal."
+```
+```{R, eval=FALSE}
+str_view(cadena,"\\d")
+```
+
+\begin{center}
+\includegraphics{img/str_view_2018_1.png}
+\end{center}
+
+Wickham menciona [@wickham2016r, pag. 204] que, "es posible usar alternancias para elegir entre uno o más patrones alternativos. Por ejemplo, abc|d..f coincidirá con "abc" o con "deaf". Haciendo notar que la prioridad para el operador \"|\" es baja, por lo que abc|xyz coincide con abc o xyz, no con abcyz o abxyz. Al igual que en las matemáticas, si existe ambigüedad en la prioridad de las operaciones, usar paréntesis lo hará todo más claro."
+
+```{R, eval=FALSE}
+str_view(c("tamaño","tasa","tata","taza","tapa"),"ta(s|z)a")
+```
+
+\begin{center}
+\includegraphics{img/str_view_tasza_2.png}
+\end{center}
+
+**Repeticiones**
+
+El siguiente paso en complejidad para las expresiones regulares es, controlar el número de veces que aparece un patrón coincidente.
+
++ ?: Se repite 0 o 1.
++ +: Se repite 1 o más veces.
++ *: Se repite 0 a más veces.
+
+```{R}
+x <- "1888 es el año más largo en números romanos: MDCCCLXXXVIII"
+```
+```{R, eval=FALSE}
+str_view(x,"XX?")
+```
+
+\begin{center}
+\includegraphics{img/str_view_2018_XX.png}
+\end{center}
+
+```{R, eval=FALSE}
+str_view(x,"XX+")
+```
+
+\begin{center}
+\includegraphics{img/str_view_2018_XX+.png}
+\end{center}
+
+```{R, eval=FALSE}
+str_view(x,"C[LX]+")
+```
+
+\begin{center}
+\includegraphics{img/str_view_2018_C[LX]+.png}
+\end{center}
+
+Es posible especificar el número de repeticiones que se desea hacer coincidir un patrón. Ya sea de manera exacta o dentro de un intervalo. Esta repetición en el patrón se define de la siguiente manera.
+
++ {n}: exactamente n veces
++ {n,}: n o más veces
++ {,m}: a lo más m veces
++ {n,m}: entre n y m veces
+
+```{R, eval=FALSE}
+str_view(x,"X{3}")
+```
+
+\begin{center}
+\includegraphics{img/str_view_2018_X{3}.png}
+\end{center}
+
+```{R, eval=FALSE}
+str_view(x,"X{1,2}")
+```
+
+\begin{center}
+\includegraphics{img/str_view_2018_X{1,2}.png}
+\end{center}
+
+**Herramientas**
+
+Una vez que se han visto los aspectos básicos de las expresiones regulares, es posible utilizar los patrones coincidentes y combinarlos para aplicarlos en problemas reales. Algunas de las aplicaciones más comunes son:
+
++ Determinar cuáles cadenas coinciden con un patrón.
++ Encontrar la posición de las coincidencias.
++ Extraer el contenido de las coincidencias.
++ Reemplazar coincidencias con nuevos valores.
++ Dividir una cadena basándose en una coincidencia.
+
+A continuación se analizarán las funciones que permitirán realizar las acciones anteriores.
+
+### Detectar coincidencias
+
+Para determinar las cadenas de caracteres dentro de un vector que coinciden con un patrón, es posible utilizar la función *str_detect()*. La función regresará un vector booleano una vez que se introduzcan como argumentos el vector con cadenas y el patrón con el que se desea hacer la coincidencia.
+
+Aplicando esta función a un marco de muestreo es posible apreciar si los elementos coinciden o no con algún patrón indicado.
+
+En el siguiente ejemplo se puede apreciar cuáles frutas tienen entre sus letras una "a" o una "u".
+
+```{R}
+str_detect(fruit, "[au]")
+```
+
+A continuación se puede apreciar una aplicación de la función *str_detect()*. Se usará el vector booleano para seleccionar el subconjunto del objeto **fruit**  que tiene entre su nombre una letra "l" o una letra "o".
+
+```{R}
+fruit[str_detect(fruit, "[lo]")]
+```
+
+De esta manera se va filtrando un marco muestral para quedarse únicamente con los elementos que coincidan con un patrón coincidente.
+
+### Contabilizar coincidencias
+
+Una variación de la función anterior, es la función *str_count()*. Esta función en lugar de devolver un vector lógico, devuelve un vector de conteos que corresponde al número de veces que detectó una coincidencia para cada cadena dentro de un vector.
+
+La manera de usarse es análoga a la función str_detect().
+
+```{R}
+str_count(fruit, "[aeiou]")
+```
+
+En el ejemplo anterior se puede apreciar el número de vocales que existen dentro de cada una de los nombres de las frutas.
+
+Una de las aplicaciones más comunes para esta función, se encuentra en los estudios de análisis de textos. A continuación, se puede apreciar el promedio de vocales que son usadas dentro de los nombres de frutas en el objeto **fruit**.
+
+```{R}
+mean(str_count(fruit, "[aeiou]"))
+```
+
+Otro ejemplo más complejo de esta función y sus aplicaciones es el siguiente:
+
+```{R}
+tabla <- data.frame("Vocal" = c("a","e","i","o","u"),
+                    "Conteos" = c(sum(str_count(fruit, "a")),sum(str_count(fruit, "e")),
+                                  sum(str_count(fruit, "i")),sum(str_count(fruit, "o")),
+                                  sum(str_count(fruit, "u"))))
+
+tabla$Porcentaje <- tabla$Conteos/sum(tabla$Conteos)
+
+tabla
+```
+
+De esta manera es posible visualizar los conteos totales que tuvo cada vocal. Se calculó el porcentaje de aparición que tiene cada vocal con respecto al total de vocales en el conjunto. 
+
+Un dato curioso que es posible concluir con este ejemplo, es que, las vocales "a" y "e" aparecen casi dos veces más que el resto de las vocales en el conjunto **fruit**.
+
+El anterior es un ejemplo sencillo que tiene por objetivo ilustar el aprovechamiento de las funciones, sin embargo, una aplicación más robusta podría permitir que a través de los tweets emitidos a candidatos políticos, se realice un análisis de sentimientos, en el cual cada tweet sea asociado a uno o más sentimientos tales como: alegría, enojo, miedo, tristeza, adversión, etc.
+
+Posteriormente, de manera análoga a los conteos de vocales con porcentajes, se podría analizar la distribución de los sentimientos asociados a las opiniones de cada uno de los candidatos políticos. Adicionalmente, se podría realizar un análisis en donde se muestren las palabras que más se repiten al expresarse de un candidato.
+
+### Extraer coincidencias
+
+Cuando se desea identificar y extraer un subgrupo particular de elementos que cumplan con cierta condición definida a través de un patrón coincidente, la función *str_extract()* es la mejor opción para realizar esta tarea. 
+
+Si se desea extraer el subconjunto de sentencias conjuntivas o disyuntivas es necesario definir el patrón coincidente con el cuál se compararán las sentencias para ser extraídas.
+
+```{R}
+patron <- "( and )|( or )"
+```
+
+Por su traducción en inglés, "and" y "or" son los conectores "y" y "o" respectivamente. Primero se filtrarán las oraciones que cumplen con la condición de que las conjunciones "and" u "or" se encuentren dentro y posteriormente se extraerán los elementos coincidentes.
+
+```{R}
+coincidencias <- str_subset(sentences, patron)
+head(coincidencias,10)
+```
+
+Apenas  123 sentencias cumplen con la condición. Éstas representan el 17.08%  del total.
+Para extraer los elementos coincidentes, la función *str_extract()* se usa de la siguiente manera:
+
+```{R}
+str_extract(coincidencias, patron)
+```
+
+Con el código anterior se logra extraer el patrón coincidente de cada una de las sentencias, sin embargo, sólo se logra extraer la primer coincidencia de cada cadena en donde hubo al menos una coincidencia. Para extender este resultado a todos los patrones coincidentes dentro de la sentencia, se debe agregar el sufijo "_all" a la función. La función *str_extract_all()* extraerá todas las coincidencias y las agrupará en un objeto cuya estructura será la de una "lista". Con la función *head()* se logrará visualizar los 5 primeros elementos de la lista que guarda el resultado generado por la función *str_extract_all()*.
+
+```{R}
+head(str_extract_all(coincidencias,patron),5)
+```
+
+Un formato más compacto del resultado anterior se logra al agregar el parámetro "simplfy = TRUE" dentro de la función de extracción. Para visualizar aleatoriamente diez de los resultados generados, se puede hacer uso de la función *some()* de la librería *car* [@car].
+
+```{R, message = F, warning = F}
+library(car)
+
+some(str_extract_all(coincidencias, patron, simplify = TRUE),10)
+```
+
+Si en alguna cadena existieran más de dos patrones coincidentes, aparecería en la segunda columna el patrón encontrado (e.g., elemento en el séptimo renglón), de lo contrario, el elemento de la segunda columna permanecerá vacío a través de dos comillas.
+
+El resultado será un objeto de la clase *data.frame* que tendrá tantas columnas como coincidencias máximas hayan existido en una sentencia.
+
+La siguientes línea de código permite hacer conteos del número de veces que el patrón coincidente fue detectado en el vector de oraciones. La función *str_count()* indicará el número de veces que el patrón fue detectado en cada oración. Finalmente, el vector numérico se suma.
+
+```{R}
+sum(str_count(coincidencias, pattern = patron))
+```
+
+Con este dato, se puede decir que a lo largo de 123 oraciones, se puede encontrar 126 veces el patrón indicado. Este tipo de análisis nos permite hacer reportes como el siguiente: En promedio, cada oración tiene incluido 1.02 veces el patrón coincidente. 
+
+A continuación, se revisará el modo de detectar y reemplazar patrones regulares.
+
+### Reemplazar coincidencias
+
+A menudo es necesario reemplazar algunos patrones. Ya sea derivado de un error en las cadenas de texto o por interés de presentar los resultados de una manera distinta, identificar y sustituir un subconjunto de caracteres es algo que la función *str_replace()* de la paquetería stringr puede hacer.
+
+Como todas las funciones vistas hasta el momento provenientes de la paquetería stringr, la función *str_replace()* recibe el objeto con las cadenas de caracteres originales y a través de un patrón de texto se hace la búsqueda de las coincidencias. Es posible incluir más de 1 patrón y asignar el nuevo texto que sustituirá al anterior para cada uno de los patrones definidos. La función *str_replace()* hará la sustitución de un solo patrón coincidente y la función *str_replace_all()* lo hará para todos los patrones definidos.
+
+```{R}
+# Ejemplos de cambio de codigos a palabras o invertido  
+
+x <- c("1","2","1","2","1","2","1","2","1","2")
+x1 <- str_replace(x, "1","Hombre")
+print(x1)
+
+x2 <- str_replace(x1, "2","Mujer")
+print(x2)
+
+# Es posible replicar el resultado en un solo paso mediante str_replace_all
+
+str_replace_all(x, c("1" = "Hombre", "2" = "Mujer"))
+```
+
+### Divisiones mediante patrones
+
+La información se presenta en diferentes formatos todo el tiempo. A veces cada variable tiene su propia columna, pero a veces la información está mezclada y es necesario dividirla a fin de trabajar mejor con ella.
+
+Un caso recurrente en donde se presenta esta operación es con las fechas. El formato de una fecha a menudo se presenta como dd/mm/aaaa. Bajo este formato se puede encontrar tres datos en uno solo (día, mes y año). Para dividirlo, se podría utilizar el caracter "/" como patrón de coincidencia que permita dividir los datos en tres columnas separadas. Se debe agregar el parámetro "*simplify = T*" para poder simplificar los resultados y visualizarlos en un objeto *data.frame()*. La manera de hacerlo es la siguiente:
+
+Primero se genera un vector con fechas
+
+```{R}
+fechas <- c("15/11/1991","20/11/1981","04/02/1966","01/10/1958","23/04/1992");fechas
+```
+
+Ahora, se generan tres columnas, una para el campo "Día", otra para el campo "Mes" y otra para "Año"
+
+```{R}
+fechas2 <- str_split(string = fechas,pattern = "/",n = 3, simplify = T)
+fechas2 <- as.data.frame(fechas2)
+
+names(fechas2) <- c("Día","Mes","Año")
+fechas2
+```
+
+### Localización de coincidencias
+
+Para poder hacer operaciones con algunas cadenas de caracteres, en ocasiones es necesario proporcionar los índices que denotan el inicio y el término de algún patrón de caracteres. La función *str_locate()* devuelve dichos índices una vez que se le haya proporcionado como argumento el patrón coincidente y el vector de cadenas de texto.
+
+```{R}
+x <- c("090020001-123","090001-512","09002-1236","90020001-1237","09001-123811")
+str_locate(x,"-\\d{2,}")
+
+```
+
+
+El ejemplo anterior muestra la manera en la que se localizan los índices iniciales y finales de los caracteres posteriores al símbolo "-", que cumplan con tener al menos 2 dígitos. Hay que tomar en cuenta que bajo esta forma de extraer los índices, la posición del caracter "-" está incluida y es ahí donde inicia el conteo.
+
+Habiendo platicado de esto, podemos hablar de uno de los temas importantes en muchas ocasiones complerjos de la manipulación de datos...  las fechas. 
+
+
+
+
 ## Manipulación de fechas
 
 
