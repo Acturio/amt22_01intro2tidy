@@ -478,19 +478,70 @@ Este conjunto de datos contiene tres variables:
 
 ```{r}
 relig_income %>% 
-  pivot_longer(-religion,
-               names_to = "income", 
-               values_to = "count")
+  pivot_longer(cols = -religion, names_to = "income", values_to = "count")
 ```
 * El primer argumento es el conjunto de datos para remodelar, relig_income.
 * El segundo argumento describe qué columnas necesitan ser reformadas. En este caso, es cada columna aparte de religion.
-* El _names_to_ da el nombre de la variable que se creará a partir de los datos almacenados en los nombres de columna, es decir, ingresos.
-* Los _values_to_ dan el nombre de la variable que se creará a partir de los datos almacenados en el valor de la celda, es decir, count. Ni la columna names_to ni la values_to existen en relig_income, por lo que las proporcionamos como cadenas de caracteres entre comillas.
+* El **names_to** da el nombre de la variable que se creará a partir de los datos almacenados en los nombres de columna, es decir, ingresos.
+* Los **values_to** dan el nombre de la variable que se creará a partir de los datos almacenados en el valor de la celda, es decir, count. Ni la columna names_to ni la values_to existen en relig_income, por lo que las proporcionamos como cadenas de caracteres entre comillas.
+
+
+
+### Unión de columnas
+
+Es común que en los conjuntos de datos exista información esparcida en distintas columas que sería deseable **(en muy pocas ocasiones)** tenerlas en una sola columna. Algunos ejemplos de esta situación deseable son las fechas y claves geoestadísticas. La función *unite()* sirve para **concatenar el contenido de columnas** mediante un separador elegible.
+
+Se usará la variable de la clave geoestadística de localidades del país como ejemplo.
+
+El formato para las claves geoestadísticas para estado, municipio y localidad son claves alfanuméricas que contienen 2, 3 y 4 caracteres respectivamente. Es indispensable que al trabajar con claves geoestadísticas, las claves estén en su formato original. A continuación se hará la homologación de las claves para usar la función *unite()*.
+
+```{R message=FALSE, warning=FALSE}
+library(magrittr)
+library(readxl)
+library(stringr)
+
+Datos <- read_excel("data/Margin CONAPO.xlsx", sheet = "Margin CONAPO")
+Datos
+```
+
+Como puede apreciarse en la tabla anterior, las claves de los campos *Ent*, *Mun* y *Loc* aparecen como numéricos. La estructura deseada para estos campos es de tipo alfanumérico y de longitud 2, 3 y 4 respectivamente. Para lograr esta estructura de datos, es necesario concatenar tantos ceros como sean necesarios antes del valor actual hasta lograr la longitud deseada.  
+
+```{R}
+Datos2 <- Datos %>% select(ENT, MUN, LOC)
+Datos2$ENT %<>% str_pad(width = 2, side = "left", pad = "0")
+Datos2$MUN %<>% str_pad(width = 3, side = "left", pad = "0")
+Datos2$LOC %<>% str_pad(width = 4, side = "left", pad = "0")
+
+Datos2 %>% head()
+
+Datos2 %>% unite("CVE_GEO", c("ENT","MUN","LOC"), sep="", remove = F) %>% head()
+
+Datos2 %>% unite("CVE_GEO", c("ENT","MUN","LOC"), sep="/",remove = T) %>% head()
+```
+
+En el código anterior se carga la librería *magrittr* para poder hacer uso del operador pipe doble "%<>%", que permite al igual que el operador pipe simple "%>%", usar como argumento al primer elemento y mandarlo hacia la función definida, además de guardar el resultado final de la cadena de pipes en el argumento original que fue usado como insumo para la función. Es importante tener en cuenta que el dato será reescrito y no se podrá tener acceso a su información almacenada antes de ser usado el operador. 
+
+Es opción del programador poder eliminar las variables originales que crearon la nueva variable o mantenerlas en el conjunto de datos. Esta opción está disponible en el parámetro *remove* de la función *unite()*.
+
+### Separador de columnas
+
+Los procesos que se han visto hasta ahora han tenido cada uno una función inversa, este es también el caso de la función *unite* que tiene por objetivo unir dos o más columnas en una. La función *separate()* separará una columna en dos o más dependiendo de la longitud que tenga y de las especificaciones de separación. 
+
+```{R}
+Datos_unite1 <- Datos2 %>% unite("CVE_GEO", c("ENT","MUN","LOC"), sep = "", remove = T) 
+Datos_unite1 %>% head() 
+
+Datos_unite1 %>% 
+  separate("CVE_GEO", c("EDO","MUNI","LOC"), sep = c(2, 5), remove=F) %>% 
+  head()
+```
+
+Ya sea que se le especifique el número de caracteres que debe de contar para hacer un corte o que se le indique qué caracter debe identificar para hacer la separación, la función *separate()* puede dividir la columna indicada y crear nuevas a partir de la original.
+
 
 
 
 ## Manipulación de texto (stringr)
-
 
 Anteriormente se mencionaron algunas paqueterías que están incluídas dentro del conjunto Tidyverse. La paquetería stringr no forma parte del núcleo de Tidyverse, no obstante, sí pertenece a dicho conjunto y es ampliamente usada junto a las paqueterías nucleares debido a la facilidad que tiene para trabajar con cadenas, textos y espresiones regulares en general. Las expresiones regulares, también conocidas como *regex* o *regexp*, **son patrones de texto repetidos en los datos y que son usados para operar con otras cadenas de texto**. El resultado de dichas operaciones es obtener o resumir información, además de manipular y ordenar los conjuntos de datos. Entre las principales operaciones se encuentran los conteos, concatenaciones, separaciones, búsquedas, extracciones, imputaciones y sustituciones.
 
@@ -577,7 +628,9 @@ Cuando únicamente interesa un **subconjunto de alguna cadena** para continuar c
 str_sub("subcadenas", start = 4, end = 9)
 
 x <- "00000090060002"
-str_sub(x, start = str_length(x)-8,str_length(x))
+str_sub(x, start = str_length(x) - 8, str_length(x))
+
+str_sub(x, start = -9)
 ```
  
 Con la misma función *str_sub()* es posible **sustituir parcial o totalmente** la cadena "X" que sea introducida como argumento. Ésto se logra asignando a la subcadena seleccionada el valor que se usará para sustituir. En los siguientes ejemplos se muestra cómo modificar la cadena "substring" y la cadena "090060002".
@@ -605,31 +658,21 @@ La paquetería *stringr* cuenta con tres conjuntos predefinidos de oraciones y p
 ```{R}
 head(sentences, 10)
 
-head(words,20)
+head(words, 20)
 
-head(fruit,20)
+head(fruit, 20)
 
 ```
 
 Para realizar una coincidencia de patrones, es necesario ingresar como argumento el vector de cadenas de caracteres en donde se desea hacer la búsqueda. Como segundo argumento, se ingresa el patrón con el cuál se desea buscar las coincidencias. Para que únicamente se muestren las coincidencias exitosas se debe agregar el argumento match = TRUE. 
 
 
-```{R, eval=FALSE}
+```{R}
 str_view(sentences,"great", match = TRUE)
-
 ```
 
-```{r echo=FALSE,fig.align='center', out.width='700pt'}
-knitr::include_graphics("img/03-tidyverse/str_view_great_2.png")
-```
-
-
-```{R, eval=FALSE}
+```{R}
 str_view(sentences,"this", match = TRUE)
-```
-
-```{r echo=FALSE,fig.align='center', out.width='700pt'}
-knitr::include_graphics("img/03-tidyverse/str_view_this_2.png")
 ```
 
 Como es posible apreciarse en los dos ejemplos anteriores, la función *str_view()* filtra los casos coincidentes con los patrones "great" y "this". Esta coincidencia no necesariamente es perfecta. Basta con que un subconjunto de la sentencia coincida con el patrón definido para que la función *str_view()* reconozca como coincidencia válida a toda la cadena.
@@ -637,14 +680,9 @@ Como es posible apreciarse en los dos ejemplos anteriores, la función *str_view
 En caso de no contar con todos los caracteres del patrón deseado o de querer ver todas las combinaciones que tengan un patrón adyacente común, es posible ingresar un "comodín" a través del caracter punto \".\", el cuál coincidirá con cualquier caracter. Este caracter especial puede usarse al principio, al final o de manera intermedia dentro del patrón.
 
 
-```{R, eval=FALSE}
+```{R}
 str_view(sentences,"up.", match = TRUE)
 ```
-
-```{r echo=FALSE,fig.align='center', out.width='700pt'}
-knitr::include_graphics("img/03-tidyverse/str_view_up.png")
-```
-
 
 Como se puede observar, esta es una manera de detectar subconjuntos de particular interés.
 
@@ -655,22 +693,12 @@ Como se mencionó anteriormente, por default, la coincidencia de patrones se efe
 + ^ Para hacer coincidir el inicio de la cadena
 + $ Para hacer coincidir el final de la cadena
 
-```{R, eval=FALSE}
+```{R}
 str_view(words,"^y", match = TRUE)
 ```
 
-```{r echo=FALSE,fig.align='center', out.width='700pt'}
-knitr::include_graphics("img/03-tidyverse/str_view_^y.png")
-```
-
-
-
-```{R, eval=FALSE}
+```{R}
 str_view(words,"x$", match = TRUE)
-```
-
-```{r echo=FALSE,fig.align='center', out.width='700pt'}
-knitr::include_graphics("img/03-tidyverse/str_view_x.png")
 ```
 
 En caso de desear hacer coincidir todo el contenido de la cadena, deben usarse ambos caracteres especiales para definir el inicio y el final del patrón coincidente como se muestra a continuación. 
@@ -679,12 +707,8 @@ En caso de desear hacer coincidir todo el contenido de la cadena, deben usarse a
 vector <- c("nulo éxito", "poco éxito","éxito moderado","éxito", "éxito total")
 ```
 
-```{R, eval=FALSE}
+```{R}
 str_view(vector,"^éxito$")
-```
-
-```{r echo=FALSE,fig.align='center', out.width='700pt'}
-knitr::include_graphics("img/03-tidyverse/str_view_^exito.png")
 ```
 
 Wickham menciona que, además del caracter especial punto \".\", existen otros cuatro que resultan muy útiles para mostrar patrones particulares.
@@ -701,24 +725,15 @@ Al momento de definir cualquiera de estos 4 patrones coincidentes será necesari
 cadena <- "El año 2018 fue un año de mucho crecimiento personal."
 ```
 
-```{R, eval=FALSE}
-str_view(cadena,"\\d")
-```
-
-```{r echo=FALSE,fig.align='center', out.width='700pt'}
-knitr::include_graphics("img/03-tidyverse/str_view_2018_1.png")
+```{R}
+str_view(cadena,"\\d", match = T)
 ```
 
 Wickham menciona que, "es posible usar alternancias para elegir entre uno o más patrones alternativos. Por ejemplo, abc|d..f coincidirá con "abc" o con "deaf". Haciendo notar que la prioridad para el operador \"|\" es baja, por lo que abc|xyz coincide con abc o xyz, no con abcyz o abxyz. Al igual que en las matemáticas, si existe ambigüedad en la prioridad de las operaciones, usar paréntesis lo hará todo más claro."
 
-```{R, eval=FALSE}
+```{R}
 str_view(c("tamaño","tasa","tata","taza","tapa"),"ta(s|z)a")
 ```
-
-```{r echo=FALSE,fig.align='center', out.width='700pt'}
-knitr::include_graphics("img/03-tidyverse/str_view_tasza_2.png")
-```
-
 
 **Repeticiones**
 
@@ -732,29 +747,16 @@ El siguiente paso en complejidad para las expresiones regulares es, controlar el
 x <- "1888 es el año más largo en números romanos: MDCCCLXXXVIII"
 ```
 
-```{R, eval=FALSE}
+```{R}
 str_view(x,"XX?")
 ```
 
-```{r echo=FALSE,fig.align='center', out.width='700pt'}
-knitr::include_graphics("img/03-tidyverse/str_view_2018_XX.png")
-```
-
-
-```{R, eval=FALSE}
+```{R}
 str_view(x,"XX+")
 ```
 
-```{r echo=FALSE,fig.align='center', out.width='700pt'}
-knitr::include_graphics("img/03-tidyverse/str_view_2018_XXmas.png")
-```
-
-```{R, eval=FALSE}
+```{R}
 str_view(x,"C[LX]+")
-```
-
-```{r echo=FALSE,fig.align='center', out.width='700pt'}
-knitr::include_graphics("img/03-tidyverse/str_view_2018_CLX.png")
 ```
 
 Es posible especificar el número de repeticiones que se desea hacer coincidir un patrón. Ya sea de manera exacta o dentro de un intervalo. Esta repetición en el patrón se define de la siguiente manera.
@@ -764,20 +766,26 @@ Es posible especificar el número de repeticiones que se desea hacer coincidir u
 + {,m}: a lo más m veces
 + {n,m}: entre n y m veces
 
-```{R, eval=FALSE}
+```{R}
 str_view(x,"X{3}")
 ```
 
-```{r echo=FALSE,fig.align='center', out.width='700pt'}
-knitr::include_graphics("img/03-tidyverse/str_view_2018_X{3}.png")
-```
-
-```{R, eval=FALSE}
+```{R}
 str_view(x,"X{1,2}")
 ```
 
-```{r echo=FALSE,fig.align='center', out.width='700pt'}
-knitr::include_graphics("img/03-tidyverse/str_view_2018_X{1,2}.png")
+**Match múltiple / nulo**
+
+Es interesante el siguiente ejemplo. ¿Qué es lo que sucede?
+
+```{r}
+str_view(x,"M*")
+```
+
+Recordemos que los operadores * o ? busca un patrón que puede o no encontrarse dentro de la cadena de interés. En el caso anterior, la letra "M" puede o no encontrarse en la cadena "x". En el ejemplo anterior, en cada posible caracter existe el hallazgo o no hallazgo de la letra "M", de forma que el primer match que hace se encuentra al principio de la cadena. Una limitante de la función *str_view()* es que **únicamente resalta la primer coincidencia** encontrada con el patrón regular, sin embargo, la función *str_view_all()* se encarga de resaltar todas las coincidencias en la cadena, como se muestra a continuación.
+
+```{r}
+str_view_all(x,"M*")
 ```
 
 **Herramientas**
@@ -833,12 +841,14 @@ mean(str_count(fruit, "[aeiou]"))
 Otro ejemplo más complejo de esta función y sus aplicaciones es el siguiente:
 
 ```{R}
-tabla <- data.frame("Vocal" = c("a","e","i","o","u"),
-                    "Conteos" = c(sum(str_count(fruit, "a")),sum(str_count(fruit, "e")),
-                                  sum(str_count(fruit, "i")),sum(str_count(fruit, "o")),
-                                  sum(str_count(fruit, "u"))))
+tabla <- data.frame(
+  "Vocal" = c("a","e","i","o","u"),
+  "Conteos" = c(sum(str_count(fruit, "a")),sum(str_count(fruit, "e")),
+                sum(str_count(fruit, "i")),sum(str_count(fruit, "o")),
+                sum(str_count(fruit, "u")))
+  ) %>% 
+  mutate(Porcentaje = Conteos/sum(Conteos))
 
-tabla$Porcentaje <- tabla$Conteos/sum(tabla$Conteos)
 
 tabla
 ```
@@ -878,15 +888,16 @@ str_extract(coincidencias, patron)
 Con el código anterior se logra extraer el patrón coincidente de cada una de las sentencias, sin embargo, sólo se logra extraer la primer coincidencia de cada cadena en donde hubo al menos una coincidencia. Para extender este resultado a todos los patrones coincidentes dentro de la sentencia, se debe agregar el sufijo "_all" a la función. La función *str_extract_all()* extraerá todas las coincidencias y las agrupará en un objeto cuya estructura será la de una "lista". Con la función *head()* se logrará visualizar los 5 primeros elementos de la lista que guarda el resultado generado por la función *str_extract_all()*.
 
 ```{R}
-head(str_extract_all(coincidencias,patron),5)
+head(str_extract_all(coincidencias,patron), 5)
 ```
 
-Un formato más compacto del resultado anterior se logra al agregar el parámetro "simplfy = TRUE" dentro de la función de extracción. Para visualizar aleatoriamente diez de los resultados generados, se puede hacer uso de la función *some()* de la librería *car* [@car].
+Un formato más compacto del resultado anterior se logra al agregar el parámetro "simplfy = TRUE" dentro de la función de extracción. Para visualizar aleatoriamente diez de los resultados generados, se puede hacer uso de la función *sample_n()* de la librería *dplyr*.
 
 ```{R, message = F, warning = F}
-library(car)
-
-some(str_extract_all(coincidencias, patron, simplify = TRUE),10)
+dplyr::sample_n(
+  tbl = as_tibble(str_extract_all(coincidencias, patron, simplify = TRUE), .name_repair = "unique"), 
+  size = 10
+)
 ```
 
 Si en alguna cadena existieran más de dos patrones coincidentes, aparecería en la segunda columna el patrón encontrado (e.g., elemento en el séptimo renglón), de lo contrario, el elemento de la segunda columna permanecerá vacío a través de dos comillas.
@@ -939,11 +950,9 @@ fechas <- c("15/11/1991","20/11/1981","04/02/1966","01/10/1958","23/04/1992");fe
 Ahora, se generan tres columnas, una para el campo "Día", otra para el campo "Mes" y otra para "Año"
 
 ```{R}
-fechas2 <- str_split(string = fechas,pattern = "/",n = 3, simplify = T)
-fechas2 <- as.data.frame(fechas2)
-
-names(fechas2) <- c("Día","Mes","Año")
-fechas2
+str_split(string = fechas,pattern = "/",n = 3, simplify = T) %>% 
+  as_tibble() %>% 
+  rename(day = V1, month = V2, year = V3)
 ```
 
 ### Localización de coincidencias
@@ -962,9 +971,65 @@ El ejemplo anterior muestra la manera en la que se localizan los índices inicia
 Habiendo platicado de esto, podemos hablar de uno de los temas importantes en muchas ocasiones complejos de la manipulación de datos...  las fechas. 
 
 
-
-
 ## Manipulación de fechas y horas
+
+Una de la tareas más comunes en el análisis de datos es la manipulación de fechas y horas. Existe una infinidad de situaciones en donde saber operar con esta clase de datos. El primer paso es lograr identificar una cadena de caracteres como un dato temporal. Veamos un primer ejemplo:
+
+```{r}
+library(lubridate)
+
+fechas <- c("2018/09/11", "1992/04/23", "1966/02/04", "1958/10/01", "1991/11/15")
+class(fechas)
+
+class(as_date(fechas))
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
