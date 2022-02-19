@@ -362,7 +362,7 @@ knitr::include_graphics("img/03-tidyverse/duplicado2.png")
 ```
 
 
-## Órden y reestructuración de tablas
+## Orden y reestructuración de tablas
 
 \begin{center}
 "Las familias felices son todas iguales, cada familia infeliz es infeliz  a su propio modo."
