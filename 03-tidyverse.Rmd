@@ -1,5 +1,9 @@
 # Tidyverse
 
+::: {.watermark}
+<img src="img/header.png" width="400"/>
+:::
+
 ## Consultas de datos (dplyr)
 
 Ahora que ya sabemos como cargar datos, aprenderemos como manipularlos con *dplyr.* El paquete *dplyr* proporciona un conjunto de funciones muy útiles para manipular data frames y así reducir el número de repeticiones, la probabilidad de cometer errores y el número de caracteres que hay que escribir. Como valor extra, podemos encontrar que la gramática de *dplyr* es más fácil de entender.
@@ -978,7 +982,7 @@ Habiendo platicado de esto, podemos hablar de uno de los temas importantes en mu
 
 Una de la tareas más comunes en el análisis de datos es la manipulación de fechas y horas. Existe una infinidad de situaciones en donde saber operar con esta clase de datos es vital para el análisis de datos general. El primer paso es lograr identificar una cadena de caracteres como un dato temporal. Veamos un primer ejemplo:
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(lubridate)
 
 fechas <- c("2018/09/11", "1992/04/23", "1966/02/04", "1958/10/01", "1991/11/15")
@@ -1041,10 +1045,30 @@ lubridate::mday(tiempo)
 lubridate::yday(tiempo)
 ```
 
+### Operaciones temporales
 
+Las operaciones aritméticas entre datos temporales es cotidiano en todo momento cuando se analizan datos. Operaciones de sumas y restas de fechas y horas que permiten conocer la longitud de tiempo en dos momentos es una tarea que puede resolverse a través de los operadores aritméticos y lógicos.
 
+Resta entre fechas
+```{r}
+as_date("1991/11/15") - as_date("1992/04/23")
 
+as_date("1992/04/23") - as_date("1991/11/15")
+```
 
+Suma y resta de días
+```{r}
+as_date("1991/11/15") + 365
+```
+
+Operadores lógicos
+```{r}
+as_date("1992/04/23") > as_date("1991/11/15")
+
+as_date("1992/04/23") < as_date("1991/11/15")
+```
+
+Cada una de las operaciones vistas en este capítulo son compatibles con dplyr y el resto de las librerías tidyverse.
 
 
 

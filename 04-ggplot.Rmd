@@ -4,8 +4,6 @@
 <img src="img/header.png" width="400"/>
 :::
 
-
-
 "El análisis exploratorio de datos se refiere al **proceso crítico de realizar investigaciones iniciales sobre los datos** para descubrir patrones, detectar anomalías, probar hipótesis y verificar suposiciones con la ayuda de estadísticas resumidas y representaciones gráficas." [Towards](https://towardsdatascience.com/exploratory-data-analysis-8fc1cb20fd15)
 
 ```{r echo=FALSE,fig.align='center'}
@@ -151,7 +149,7 @@ Comparando con los gráficos base de R, ggplot2:
 
 Histograma con los gráficos base:
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
 
 data(iris)
 hist(iris$Sepal.Length)
@@ -159,7 +157,7 @@ hist(iris$Sepal.Length)
 
 Histograma con ggplot2:
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
 library(ggplot2)
 ggplot(iris, aes(x = Sepal.Length)) +
   geom_histogram(color = 'white', bins=8)
@@ -169,7 +167,7 @@ Ahora vamos a ver un gráfico con colores y varias series de datos.
 
 Con los gráficos base:
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
 plot(Sepal.Length ~ Sepal.Width,
      col = factor(Species),
      data = iris)
@@ -178,7 +176,7 @@ plot(Sepal.Length ~ Sepal.Width,
 
 Con ggplot2:
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
 ggplot(iris, 
        aes(x=Sepal.Width , 
            y= Sepal.Length,
@@ -215,20 +213,15 @@ Los objetos geométricos son las formas que puede tomar un gráfico. Algunos eje
 -   Cajas (geom_boxplot() para gráficos de cajas)
 -   Un gráfico debe tener al menos un geom, pero no hay limite. Puedes añadir más *geom* usando el signo +.
 
-Si queremos conocer la lista de objetos geométricos podemos ejercutar el siguiente código:
-
-```{r, eval=FALSE}
-help.search("geom_", package = "ggplot2")
-```
 
 Una vez añadida una capa al gráfico a este pueden agregarse nuevas capaas
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
 ggplot(iris, aes(x = Petal.Length, y = Petal.Width, colour = Species)) + 
   geom_point()
 ```
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
 ggplot(iris, aes(x = Petal.Length, y = Petal.Width, colour = Species)) + 
   geom_point()+ 
   geom_smooth()
@@ -241,7 +234,7 @@ ggplot(iris, aes(x = Petal.Length, y = Petal.Width, colour = Species)) +
 
 Muchos de los gráficos que pueden generarse con los elementos anteriores pueden reproducirse usando los gráficos tradicionales de R, pero no los que usan facetas, que pueden permitirnos explorar las variables de diferente forma, por ejemplo:
 
-```{r, warning=FALSE, message=FALSE}
+```{r, warning=FALSE, message=FALSE, echo=FALSE}
 ggplot(iris, aes(x = Petal.Length, y = Petal.Width)) + 
   geom_point() + geom_smooth() + 
   facet_grid(~ Species)
@@ -274,7 +267,7 @@ data("diamonds")
 
 Ejemplo práctico:
 
-```{r, warning=FALSE, message= F, echo = FALSE, eval=FALSE}
+```{r, warning=FALSE, message= F, echo = FALSE, eval=T}
 # diamonds %>%
 #         ggplot(aes(x = cut_number(carat, 5), y = price, color = cut)) +
 #         geom_boxplot() +
