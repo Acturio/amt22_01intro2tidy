@@ -973,7 +973,10 @@ Habiendo platicado de esto, podemos hablar de uno de los temas importantes en mu
 
 ## Manipulación de fechas y horas
 
-Una de la tareas más comunes en el análisis de datos es la manipulación de fechas y horas. Existe una infinidad de situaciones en donde saber operar con esta clase de datos. El primer paso es lograr identificar una cadena de caracteres como un dato temporal. Veamos un primer ejemplo:
+
+### Lectura y creación de datos temporales
+
+Una de la tareas más comunes en el análisis de datos es la manipulación de fechas y horas. Existe una infinidad de situaciones en donde saber operar con esta clase de datos es vital para el análisis de datos general. El primer paso es lograr identificar una cadena de caracteres como un dato temporal. Veamos un primer ejemplo:
 
 ```{r}
 library(lubridate)
@@ -985,17 +988,58 @@ class(as_date(fechas))
 
 ```
 
+Como puede apreciarse, los elementos del vector ahora son de la clase "Date". La función *as_date()* transforma caracteres a fechas. Otra forma de realizar la implementación de datos temporales es directamente la creación de datos temporales a través de las funciones *make_date()* y *make_datetime()*. Esta función recibe los parámetros de cada unidad temporal y crea el dato adecuado para representarlo, ya sea *date* o *datetime*.
+
+```{r}
+make_date(year = 1999, month = 06, day = 16)
+
+make_datetime(year = 1999:2001, month = 06, day = 16, hour = 10:12, min = 37, sec = 15)
+```
+El segundo ejemplo muestra la capacidad de estas funciones para crear una secuencia de fechas a partir de vectores de cada posible unidad temporal (día, mes año, hora, etc)
+
+Algo que puede apreciarse en los ejemplos anteriores y que es necesario mencionar, es que el formato universal de fecha se escribe: **yyyy/mm/dd**. En países como USA el formato es **mm/dd/yyyy** y en México y otras partes del mundo puede escribirse comunmente **dd/mm/yyyy**. Este tipo de diferencia a veces puede llegar a generar confusión sobre la fecha exacta en cuestión, más aún si se abrevia el año a dos caracteres **yy**. 
+
+La librería **lubridate** ofrece funciones para lidiar con el formato de lectura. Estas funciones son:
+
+* dmy / dmy_h / dmy_hm / dmy_hms
+
+* mdy / mdy_h / mdy_hm / mdy_hms
+
+* ymd / ymd_h / ymd_hm / ymd_hms
+
+* hm / hms
+
+Con todas las funciones mencionadas anteriormente se puede leer cualquier cadena de caracteres que contenga el formato especificado. A continuación, un ejemplo:
+
+```{r}
+mdy("11/25/1982")
+```
+Automáticamente cualquiera de las funciones antes mencionadas transforma el formato específico al formato universal.
 
 
+### Extracción de datos temporales
 
+Una vez que los datos temporales ya se encuentran creados, es importante saber la manera de extraer información particular de nuestro interés. En esta sección se revisará la manera de extraer cualquier unidad temporal a partir de una cadena completa de caracteres. a través de lubridate, las funciones para extracción de sub unidades temporales son intuitivas.
 
+```{r}
+tiempo <- make_datetime(year = 2004, month = 9, day = 25, hour = 11, min = 30, sec = 1)
 
+lubridate::year(tiempo)
+lubridate::month(tiempo)
+lubridate::month(tiempo, label = T, abbr = F)
+lubridate::day(tiempo)
+lubridate::hour(tiempo)
+lubridate::minute(tiempo)
+lubridate::second(tiempo)
+```
+Después de las unidades temporales básicas, es posible también extraer día de la semana o día del mes, si es de interés.
 
-
-
-
-
-
+```{r}
+lubridate::wday(tiempo)
+lubridate::wday(tiempo, label = T, abbr = F)
+lubridate::mday(tiempo)
+lubridate::yday(tiempo)
+```
 
 
 
