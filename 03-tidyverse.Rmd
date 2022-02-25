@@ -690,6 +690,10 @@ str_view(sentences,"up.", match = TRUE)
 
 Como se puede observar, esta es una manera de detectar subconjuntos de particular interés.
 
+Si \\ es usado para escapar un caracter especial, ¿cómo hacemos para hacer match con el caracter \\ leteralmente? Necesita ser escapado, creando la expresión regular \\\\. Para crear la expresión regular, se necesita usar un string, el cual también requiere ser escapado. Esto significa que para hacer match con \ se necesita escribir "\\\\\\\\" cuatro diagonales invertidas para hacer match con una sola diagonal invertida \\.
+
+Los primeros 2 diagonales son para crear la expresión regular, la tercera es para escapar el caracter especial siguiente, el cual corresponde a la cuarta diagonal.
+
 **Anclajes**
 
 Como se mencionó anteriormente, por default, la coincidencia de patrones se efectuará sobre cualquier subconjunto de la cadena de caracteres. Es posible definir el caracter inicial y/o el caracter final con el cuál se buscará la coincidencia de patrones. Esto se logra al hacer uso de los siguientes caracteres especiales.

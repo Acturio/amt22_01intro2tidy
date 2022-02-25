@@ -1,4 +1,4 @@
-# Ggplot
+# Exploración y visualización
 
 ::: {.watermark}
 <img src="img/header.png" width="400"/>
@@ -504,7 +504,11 @@ diamonds %>%
   
 ```
 
-**Otro tipo de gráficas interactivas**
+
+## Visualización interactiva
+
+A través de la librería **plotly** es posible crear interactividad entre las gráficas creadas con gglot2.
+Es posible tanto usar las funciones existentes como crear funciones que enriquezcan las estéticas comunes. A continuación se hace uso de una combinación de nuevas estéticas con la interactividad añadida. 
 
 ```{r, warning=FALSE, message=FALSE}
 library(stringr)
@@ -531,7 +535,7 @@ plot <- diamonds %>%
     geom = "point", 
     colour = "darkred", 
     shape = 18,
-    size = 3
+    size = 2
     ) +
   geom_text(
     data = means, 
@@ -543,3 +547,6 @@ plot <- diamonds %>%
 
 plotly::ggplotly(plot)
 ```
+
+Como puede apreciarse, este nuevo gráfico permite hacer uso de zoom, filtros, etiquetas, snapshots, etc.
+El contenido es creado como HTML, por lo que puede integrarse a documentos web como bookdown, shiny, xaringan, markdown, etc.
