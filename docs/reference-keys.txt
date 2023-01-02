@@ -8,12 +8,13 @@ aplicaciones
 introducción-a-r-y-python
 cómo-obtener-r-y-python
 qué-es-rstudio
-r-como-lenguaje-orientado-a-objetos
 estructuras-de-almacenamiento
 operadores-de-asignación
+r
+python
 variables
-vectores
-cómo-extraer-elementos-de-un-vector
+vectores-y-listas
+cómo-extraer-elementos-de-una-lista-o-vector
 matrices
 cómo-extraer-elementos-de-una-matriz
 arreglos
@@ -23,7 +24,7 @@ listas
 cómo-extraer-elementos-de-una-lista
 ejercicios
 funbas
-qué-es-una-función-de-r
+qué-es-una-función
 operaciones-básicas
 pruebas-lógicas
 operadores-lógicos
@@ -46,4 +47,3 @@ longitud-de-una-línea-de-código
 espacios
 asignación
 punto-y-coma
-fig:unnamed-chunk-1

@@ -34,15 +34,23 @@ knitr::include_graphics("img/02-intro2rpy/rstudio.png")
 ## Estructuras de almacenamiento
 
 
-En *R* existen varios tipos de objectos que permiten que el usuario pueda almacenar la información para realizar procedimientos estadísticos y gráficos. Los principales objetos en R son vectores, matrices, arreglos, marcos de datos y listas. A continuación se presentan las características de estos objetos y la forma para crearlos.
+En *R* y *Python* existen varios tipos de objectos que permiten que el usuario pueda almacenar la información para realizar procedimientos estadísticos y gráficos. 
+
+* Los principales objetos en R son: vectores, matrices, arreglos, marcos de datos y listas
+
+* Los principales objetos en Python son: listas, matrices, arreglos, marcos de datos y diccionarios 
+
+A continuación se presentan las características de estos objetos y la forma para crearlos.
 
 ### Operadores de asignación
+
+#### R 
+
 En R se pueden hacer asignación de varias formas, a continuación se presentan los operadores disponibles para tal fin.
 
 - `<-` este es el operador de asignación a izquierda, es el más usado y recomendado.
 - `->` este es el operador de asignación a derecha, no es frecuente su uso.
 - `=` el símbolo igual sirve para hacer asignaciones pero __NO__ se recomienda usarlo.
-- `<<-` este es un operador de asignación global y sólo debe ser usado por usuarios avanzados.
 
 #### Ejemplo {-}
 
@@ -60,106 +68,187 @@ age = 25 # No recomendado
 Aunque una asignación se puede hacer de tres formas diferentes, se recomienda sólo usar el símbolo `<-`.
 ```
 
+#### Python
+
+A diferencia de R, en Python se realiza la asignación únicamente mediante el operador `=`
+
+#### Ejemplo {-}
+
+Almacene los valores 5.3, 4.6 y 25 en los objetos `a`, `b` y `age` respectivamente, use diferentes símbolos de asignación.
+
+Para hacer lo solicitado se podría usar el siguiente código.
+
+```{python}
+a = 5.3 
+a
+
+age = 25 
+age
+```
+
+
 
 ### Variables
 
 Las variables sirven para almacenar un valor que luego vamos a utilizar en algún procedimiento.
 
-Para hacer la asignación de un valor a alguna variable se utiliza el operador \<- entre el valor y el nombre de la variable. A continuación un ejemplo sencillo.
+Para hacer la asignación de un valor a alguna variable se utiliza el operador \<- (R) o `=` (R y Python) entre el valor y el nombre de la variable. A continuación un ejemplo sencillo.
+
+#### R {-}
 
 ```{r}
+# R
 x <- 5
 (2 * x) + 3
 ```
 
-En el siguiente ejemplo se crea la variable país y se almacena el nombre Colombia, luego se averigua el número de caracteres de la variable país.
+#### Python {-}
+
+```{python}
+# Python
+x = 5
+(2 * x) + 3
+```
+
+En el siguiente ejemplo se crea la variable país y se almacena el nombre México, luego se averigua el número de caracteres de la variable país.
+
+#### R {-}
 
 ```{r}
+# R
 pais <- "México"
 nchar(pais)
 ```
 
+#### Python {-}
+
+```{python}
+# Python
+Ciudad = "Ciudad de México"
+len(Ciudad)
+```
+
 También existen variables lógicas y estas toman los valores verdadero (TRUE) o falso (FALSE) dependiendo del resultado lógico puesto a prueba. Ejemplo:
 
+#### R {-}
 ```{r}
+# R
 y <- 10
 y == (5 + 3 + 2)
 
 y != 5 + 5
 ```
 
+#### Python {-}
+```{python}
+# Python
+z = 10
+z == (5 + 3 + 2)
 
-### Vectores
-
-Los vectores vectores son arreglos ordenados en los cuales se puede almacenar información de tipo numérico (variable cuantitativa), alfanumérico (variable cualitativa) o lógico (TRUE o FALSE), pero no mezclas de éstos. La función de *R* para crear un vector es c() y que significa concatenar; dentro de los paréntesis de esta función se ubica la información a almacenar. Una vez construido el vector se acostumbra a etiquetarlo con un nombre corto y representativo de la información que almacena, la asignación se hace por medio del operador \<- entre el nombre y el vector.
-
-A continuación se presenta un ejemplo de cómo crear tres vectores que contienen las respuestas de cinco personas a tres preguntas que se les realizaron.
-
-```{r}
-
-edad <- c(15, 19, 13, NA, 20)
-deporte <- c(TRUE, TRUE, NA, FALSE, TRUE)
-sexo <- c("Hombre", "Mujer", "Hombre", "Hombre", "Mujer")
-
+z != 5 + 5
 ```
-
-El vector edad es un vector cuantitativo y contiene las edades de las 5 personas. En la cuarta posición del vector se colocó el símbolo NA que significa **Not Available** debido a que no se registró la edad para esa persona. Al hacer una asignación se acostumbra a dejar un espacio antes y después del operador \<- de asignación. 
-
-El segundo vector es llamado deporte y es un vector lógico que almacena las respuestas a la pregunta de si la persona practica deporte, nuevamente aquí hay un NA para la tercera persona. El último vector sexo contiene la información del sexo de cada persona, como esta variable es cualitativa es necesario usar las comillas " " para encerrar las respuestas.
 
 ::: {.infobox .important data-latex="{important}"}
 **¡¡ RECORDAR !!**
 
-* Cuando se usa NA para representar una información Not Available no se deben usar comillas.
+Una **importante diferencia** a notar, es que en *R* los valores lógicos se escriben completamente en mayúsculas (TRUE/FALSE) o abreviados (T/F)
+
+Por otro lado, en *python* se escribe solo la primer letra en mayúscula (True/False) y no es posible la abreviación.
+:::
+
+
+### Vectores y listas
+
+Los vectores y listas son arreglos ordenados en los cuales se puede almacenar información de tipo numérico (variable cuantitativa), alfanumérico (variable cualitativa) o lógico (TRUE o FALSE), pero no mezclas de éstos. 
+
+La función de *R* para crear un vector es c() y significa concatenar. La función de *Python* para crear una lista es `list()` o el operador de corchetes `[ ]`. Dentro de los paréntesis de estas funciones se ubica la información a almacenar. 
+
+Una vez construido el vector o lista, se acostumbra a etiquetarlo con un nombre corto y representativo de la información que almacena.
+
+A continuación se presenta un ejemplo de cómo crear tres vectores que contienen las respuestas de cinco personas a tres preguntas que se les realizaron.
+
+```{r}
+# R
+edad <- c(15, 19, 13, NA, 20)
+deporte <- c(TRUE, TRUE, NA, FALSE, TRUE)
+sexo <- c("Hombre", "Mujer", "Hombre", "Hombre", "Mujer")
+```
+
+```{python}
+# Python
+edad = list((15, 19, 13, None, 20))
+deporte = [True, True, None, False, True]
+sexo = ["Hombre", "Mujer", "Hombre", "Hombre", "Mujer"]
+```
+
+El vector edad es un vector cuantitativo y contiene las edades de las 5 personas. En la cuarta posición del vector se colocó el símbolo NA que significa **Not Available** debido a que no se registró la edad para esa persona. En el caso de python, la palabra reservada para denotar datos no disponibles es: **None**.
+
+El segundo vector es llamado deporte y es un vector lógico que almacena las respuestas a la pregunta de si la persona practica deporte, nuevamente aquí hay un NA para la tercera persona. El último vector: sexo, contiene la información del sexo de cada persona, como esta variable es cualitativa es necesario usar las comillas " " para encerrar las respuestas. 
+
+La manera de **definir cadenas de texto es igual tanto en R como en Python**.
+
+::: {.infobox .important data-latex="{important}"}
+**¡¡ RECORDAR !!**
+
+* Cuando se usa NA/None para representar una información Not Available, NO se deben usar comillas.
 
 * Es posible usar comillas 'sencillas' o comillas "dobles" para ingresar valores de una variable cualitativa.
 :::
 
 
-Si se desea ver lo que está almacenado en cada uno de estos vectores, se debe escribir en la consola de R el nombre de uno de los objetos y luego se presiona la tecla enter o intro, al realizar esto lo que se obtiene se muestra a continuación.
+Si se desea ver lo que está almacenado en cada uno de estos vectores, se debe escribir en la consola el nombre de uno de los objetos y luego se presiona la tecla enter o intro, al realizar esto lo que se obtiene se muestra a continuación.
 
 ```{r}
+# R
 edad 
 ```
 
-```{r}
-deporte 
+```{python}
+# Python
+edad 
 ```
 
-```{r}
-sexo 
-```
-
-#### ¿Cómo extraer elementos de un vector?
+#### ¿Cómo extraer elementos de una lista o vector?
 
 Para extraer un elemento almacenado dentro un vector se usan los corchetes \[\] y dentro de ellos la posición o posiciones que interesan.
-
-Ejemplo Si queremos extraer la edad de la tercera persona escribimos el nombre del vector y luego \[3\] para indicar la tercera posición de edad, a continuación el código.
-
-```{r}
-edad[3]
-
-```
-
-Si queremos conocer el sexo de la segunda y quinta persona, escribimos el nombre del vector y luego, dentro de los corchetes, escribimos otro vector con las posiciones 2 y 5 que nos interesan así: $c(2, 5)$, a continuación el código.
-
-```{r}
-sexo[c(2, 5)]
-```
-
-Si nos interesan las respuestas de la práctica de deporte, excepto la de la persona 3, usamos \[-3\] luego del nombre del vector para obtener todo, excepto la tercera posición.
-
-```{r}
-deporte[-3]
-
-```
 
 ::: {.infobox .important data-latex="{important}"}
 **¡¡ RECORDAR !!**
 
-Si desea extraer varios posiciones de un vector NUNCA escriba esto: mi_vector[2, 5, 7]. Tiene que crear un vector con las posiciones y luego colocarlo dentro de los corchetes así: **$$mi\_vector[c(2, 5, 7)]$$**
+* En el caso de R, la numeración comienza en 1.
+
+* En el caso de Python, la numeración comienza en 0 y los intervalos son abiertos por la derecha.
 :::
 
+Ejemplo Si queremos extraer la edad de la tercera persona escribimos el nombre del vector y luego `[3]` en R y `[2]` en Python para indicar la tercera posición de edad, a continuación el código.
+
+```{r}
+# R
+edad[3]
+```
+
+```{python}
+# Python
+edad[2]
+```
+
+Si queremos conocer el sexo de la segunda y quinta persona, escribimos el nombre del vector y luego, dentro de los corchetes, escribimos otro vector con las posiciones 2 y 5 que nos interesan: $c(2, 5)$, a continuación el código:
+
+#### R {-}
+```{r}
+sexo
+sexo[c(2, 5)]
+sexo[1:3]
+```
+
+#### Python {-}
+```{python}
+import numpy as np
+
+sexo
+print(np.array(sexo)[[1, 4]])
+sexo[0:3]
+```
 
 ### Matrices
 
