@@ -37,12 +37,3 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
-
-# Folder of material
-_book/
-examples/data/**
-
-
-
-
-

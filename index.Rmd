@@ -1,66 +1,74 @@
---- 
-title: Introducción a Ciencia de Datos con R (Tidyverse)
-author:
-  - Karina Lizette Gamboa Puente
-  - Oscar Arturo Bringas López
+---
+title: Análisis de Datos con R y Python
 institute: "AMAT"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-description: "Curso de aprendizaje de programación de R para Ciencia de Datos con Tidyverse"
+description: "Análisis de Datos con R y Python"
 always_allow_html: true
-
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+ echo = TRUE,
+ warning = FALSE, 
+ message = FALSE
+ )
+```
 
-# BIENVENIDA 
+# BIENVENIDA {-}
 
-## Objetivo
+## Objetivo {-}
 
-Brindar al participante los elementos teóricos y prácticos básicos alrededor de la Ciencia de Datos. Aprenderá a distinguir las diferentes soluciones a problemas que pueden resolverse con algoritmos de machine learning y aprenderá a usar el conjunto de librerías en *R* más novedoso, estructurado y ampliamente usado para la manipulación, transformación y visualización de datos: *"TIDYVERSE"*. 
+Brindar al participante los elementos teóricos y prácticos básicos alrededor de la programación para el análisis de datos. Aprenderá a distinguir las diferentes soluciones a problemas que pueden resolverse con algoritmos de machine learning y aprenderá a usar el conjunto de librerías en **R** y **Python** más novedosas, estructuradas y ampliamente usadas para la manipulación, transformación y visualización de datos: *"TIDYVERSE"*. 
 
+```{r echo=FALSE, fig.align='center', out.height='300pt', out.width='400pt'}
+knitr::include_graphics("img/00-presentacion/r_python.png")
+```
 
-## ¿Quienes somos? 
+## Instructores {-} 
 
 **ACT. ARTURO BRINGAS** 
 
-[LinkedIn](https://www.linkedin.com/in/arturo-bringas/)
-Email: act.arturo.b@ciencias.unam.mx
+**LinkedIn:** [arturo-bringas](https://www.linkedin.com/in/arturo-bringas/)
+**Email:** act.arturo.b@ciencias.unam.mx
 
-Actuario, egresado de la Facultad de Ciencias y Maestría en Ciencia de Datos, ITAM. 
-Experiencia en modelos predictivos y de clasificación de machine learning aplicado a seguros, deportes y movilidad internacional. Jefe de departamento en Investigación Aplicada y Opinión de la UNAM, donde realiza estudios estadísticos de percepción social. Consultor para empresas y organizaciones como UNODC, GNP, CBX, El Universal, INEGI, UNAM, IZZI. Actualmente se desempeña en diferentes proyectos en consultorías como Sinnia, Geek-end y DDI contribuyendo a empresas en temas de ciencia de datos, estadística, visualización de datos y análisis geoespacial.
-
+Actuario egresado de la Facultad de Ciencias con maestría en Ciencia de Datos por el ITAM. 
+Se especializa en modelos predictivos y de clasificación de *machine learning* aplicado a seguros, banca, marketing, deportes, e-commerce y movilidad internacional. Ha sido consultor *Senior Data Scientist* para empresas y organizaciones como GNP, El Universal, UNAM, la Organización de las Naciones Unidas Contra la Droga y el Delito (UNODC), entre otros. Actualmente es profesor de *Ciencia de datos y Machine Learning* en AMAT y *Data Scientist Expert* en BBVA, en donde implementa soluciones de analítica avanzada con impacto global. 
 
 ```{r echo=FALSE,fig.align='center'}
 knitr::include_graphics("img/00-presentacion/arturo.png")
 ```
 
+**ACT. KARINA LIZETTE GAMBOA** 
 
-**ACT. LIZETTE GAMBOA** 
+**LinkedIn:** [KaLizzyGam ](https://www.linkedin.com/in/kalizzygam/)
+**Email:**  lizzygamboa@ciencias.unam.mx
 
-[LinkedIn](https://www.linkedin.com/in/kalizzygam/)
-Email: lizzygamboa@ciencias.unam.mx
+Actuaria egresada de la Facultad de Ciencias y candidata a Maestra en
+Ciencia de Datos por el ITAM.
 
-Actuaria, egresada de la Facultad de Ciencias, UNAM, Maestría en Ciencia de Datos, ITAM. Experiencia en áreas de analítica predictiva e inteligencia del negocio. Lead y Senior Data Scientist en consultoría en diferentes proyectos con empresas de tecnología, retail y del sector asegurador, financiero y bancario. Experta en entendimiento de negocio para la correcta implementación de algoritmos de inteligencia y explotación de datos. Actualmente se desarrolla como Analytics Architect en Merama, Senior Data Science en CLOSTER y profesora de cursos de ciencia de datos en AMAT.
-Empresas anteriores: GNP, Activer Banco y Casa de Bolsa, PlayCity Casinos, RakenDataGroup Consulting, entre otros.
+Experiencia en áreas de analítica predictiva e inteligencia del negocio. Lead y Senior
+Data Scientist en consultoría en diferentes sectores como tecnología, asegurador,
+financiero y bancario. Es experta en entendimiento de negocio para la correcta
+implementación de algoritmos de inteligencia y explotación de datos.
+Actualmente se desarrolla como Arquitecta de Soluciones Analíticas en Merama,
+startup mexicana clasificada como uno de los nuevos unicornios de Latinoamérica.
+Senior Data Science en CLOSTER y como profesora del diplomado de Metodología
+de la Investigación Social por la UNAM así como instructora de cursos de Ciencia de
+Datos en AMAT.
 
-```{r echo=FALSE,fig.align='center'}
+Empresas anteriores: GNP, Actinver Banco y Casa de Bolsa, PlayCity Casinos,
+RakenDataGroup Consulting, entre otros.
+
+```{r echo=FALSE,fig.align='center',  out.width='250pt'}
 knitr::include_graphics("img/00-presentacion/lizzy.png")
 ```
 
-## Ciencia de Datos en R
 
-```{r echo=FALSE,fig.align='center'}
-knitr::include_graphics("img/00-presentacion/DataScienceVerse.png")
-```
- 
-
-
-## Estructura del curso actual
-
-### Alcances del curso
+## Alcances del curso {-}
 
 Al finalizar este curso el participante será capaz de consumir, manipular y visualizar información proveniente de diversas fuentes de información para resolver problemas de propósito general asociados a los datos. Este curso brindará las bases para introducirse a cualquiera de los cursos de Ciencia de datos que se imparten en AMAT: 
 
@@ -70,7 +78,7 @@ Al finalizar este curso el participante será capaz de consumir, manipular y vis
 
 Requisitos: Computadora con al menos 4Gb Ram 
 
-**Temario:**
+### Temario:
 
 **1. Introducción a Ciencia de Datos**
 
@@ -78,39 +86,31 @@ Requisitos: Computadora con al menos 4Gb Ram
 * Objetivo de la ciencia de datos
 * ¿Qué se requiere para hacer ciencia de datos?
 * Tipos de problemas que se pueden resolver 
-* Tipos de algoritmos y aprendizaje
-
 
 **2. Transformación y manipulación de estructuras de datos**
 
-* Importación
-* Lectura 
-* Consultas 
+* Lectura de datos
+* Estructuras de control
+* Consultas de datos
+* Iteraciones
 * Transformación de estructura
 
-
-**3. Manipulación de texto**
-
-* Concatenación
-* Expresiones regulares
-* Extracción
-
-
-**4.  Manipulación de fechas y horas**
+**3. Manipulación de fechas y horas**
 
 * Creación de datos temporales
 * Transformación de datos temporales
 * Operaciones con datos temporales
 
 
-**5. Análisis exploratorio y visualización interactiva de datos**
+**4. Análisis exploratorio y visualización de datos**
 
-* EDA
+* Ggplot
+* Plotnine
 * GEDA
 * Uso, decisión e implementación de técnicas gráficas
-* Visualización interactiva
 
-## Duración y evaluación del curso
+
+## Duración y evaluación del curso {-}
 
 * El programa tiene una duración de 24 hrs.
 
@@ -121,11 +121,12 @@ Requisitos: Computadora con al menos 4Gb Ram
 * Al final del curso se solicitará un proyecto final, el cual deberá ser entregado para ser acreedor a la constancia de participación.
 
 
-## Recursos y dinámica de clase
+## Recursos y dinámica de clase {-}
 
 En esta clase estaremos usando: 
 
 * R [da click aquí si aún no lo descargas](https://cran.r-project.org/)
+* Python [da click aquí si aún no lo descargas](https://www.python.org/downloads/)
 * RStudio [da click aquí también](https://www.rstudio.com/products/rstudio/download/)
 * Miro [úsame](https://miro.com/welcomeonboard/WXJiSGtOUnE4Mm1EQnJaQWxIR2R6RGxPaVo5eXQ3bG1SMHNWSkVIZ09YQ3JlTHRma1dYcFJzbm9wZ05OVmxVMXwzMDc0NDU3MzU1MzI0OTQwMDI5?invite_link_id=632956861297)
 * Zoom [Clases](https://us02web.zoom.us/j/5155440751?pwd=YzJCOGF0VnlZdlZlS0Fpc3MvZEhadz09)
@@ -137,29 +138,5 @@ En esta clase estaremos usando:
 * Notas de clase [Revisame si quieres aprender](KaLizzyGam.github.io/index.html) 
 
 
- 
-
-
-
-
-
-
 <div class="watermark"><img src="img/header.png" width="400"></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

@@ -1,4 +1,5 @@
-book_filename: 'Introducción a Ciencia de Datos con R (Tidyverse)'
+book_filename: "amt23_01_intro2tidy_pyr"
+output_dir: 'docs'
 delete_merged_file: true
 language:
   ui:
