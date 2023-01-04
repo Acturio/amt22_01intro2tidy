@@ -20,14 +20,13 @@ listas-y-diccionarios
 cómo-extraer-elementos-de-una-lista
 cómo-extraer-elementos-de-un-diccionario
 ejercicios
-funbas
-qué-es-una-función
+operadores-básicos
 operaciones-básicas
 pruebas-lógicas
 operadores-lógicos
+funciones
+qué-es-una-función
 funciones-sobre-vectores
-función-rep
-función-seq
 ejercicios-1
 bucles
 instrucción-if

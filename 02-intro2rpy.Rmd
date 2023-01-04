@@ -360,7 +360,7 @@ De la salida anterior vemos que el marco de datos tiene 3 variables (columnas) c
 
 **Ejercicios:**
 
-Use funciones o procedimientos (varias líneas) de *R* para responder cada una de las siguientes preguntas.
+Use funciones o procedimientos (varias líneas) para responder cada una de las siguientes preguntas.
 
 1. Construya un vector con 5 nombres de personas.
 
@@ -509,39 +509,9 @@ matrix(edad, deporte, sexo)
 ```
 
 
-## Funciones básicas {#funbas}
+## Operadores básicos
 
-En este capítulo se presentará lo que es una función y se mostrarán varias funciones básicas que son útiles para realizar diversas tareas.
-
-### ¿Qué es una función?
-En la figura de abajo se muestra una ilustración de lo que es una función o máquina general. Hay unas entradas (_inputs_) que luego son procesadas dentro de la caja para generar unas salidas (_outputs_). Un ejemplo de una función o máquina muy común en nuestras casas es la licuadora. Si a una licuadora le ingresamos leche, fresas, azúcar y hielo, el resultado será un delicioso jugo de fresa. 
-
-
-```{r echo=FALSE,fig.align='center', out.width='600pt' }
-knitr::include_graphics("img/02-intro2rpy/funcion.png")
-```
-
-
-Las funciones en R se caracterizan por un nombre corto y que dé una idea de lo que hace la función. Los elementos que pueden ingresar (_inputs_) a la función se llaman __parámetros__ o __argumentos__ y se ubican dentro de paréntesis, el cuerpo de la función se ubica dentro de llaves y es ahí donde se procesan los _inputs_ para convertirlos en _outputs_
-
-A continuación se muestra la estructura general para definir una función.
-
-```{r, eval=F}
-nombre_de_funcion <- function(parametro1, parametro2, ...) {
-  tareas internas
-  tareas internas
-  tareas internas
-  return(salida)
-}
-```
-
-Cuando usamos una función sólo debemos escribir bien el nombre e ingresar correctamente los parámetros de la función, el cuerpo de la función ni lo vemos ni lo debemos modificar. A continuación se presenta un ejemplo de cómo usar la función `mean` para calcular un promedio.
-
-```{r}
-notas <- c(4.0, 1.3, 3.8, 2.0)  # Notas de un estudiante
-mean(notas)
-```
-
+En este capítulo se definen las operaciones que pueden llevarse a cabo entre elementos numéricos y lógicos.
 
 ### Operaciones básicas
 En R se pueden hacer diversas operaciones usando operadores binarios. Este tipo de operadores se denomina binarios porque actúan entre dos objetos, a continuación el listado.
@@ -630,6 +600,41 @@ x < 4 && y > 5  # Conjunción vectorial
 
 Note las diferencias entre los dos últimos ejemplos, cuando se usa `&` se hace una prueba término a término y el resultado es un vector, cuando se usa `&&` se aplica la conjunción al vector de resultados obtenido con `&`.
 
+
+## Funciones
+
+En este capítulo se presentará lo que es una función y se mostrarán varias funciones básicas que son útiles para realizar diversas tareas.
+
+### ¿Qué es una función?
+En la figura de abajo se muestra una ilustración de lo que es una función o máquina general. Hay unas entradas (_inputs_) que luego son procesadas dentro de la caja para generar unas salidas (_outputs_). Un ejemplo de una función o máquina muy común en nuestras casas es la licuadora. Si a una licuadora le ingresamos leche, fresas, azúcar y hielo, el resultado será un delicioso jugo de fresa. 
+
+
+```{r echo=FALSE,fig.align='center', out.width='600pt' }
+knitr::include_graphics("img/02-intro2rpy/funcion.png")
+```
+
+
+Las funciones en R se caracterizan por un nombre corto y que dé una idea de lo que hace la función. Los elementos que pueden ingresar (_inputs_) a la función se llaman __parámetros__ o __argumentos__ y se ubican dentro de paréntesis, el cuerpo de la función se ubica dentro de llaves y es ahí donde se procesan los _inputs_ para convertirlos en _outputs_
+
+A continuación se muestra la estructura general para definir una función.
+
+```{r, eval=F}
+nombre_de_funcion <- function(parametro1, parametro2, ...) {
+  tareas internas
+  tareas internas
+  tareas internas
+  return(salida)
+}
+```
+
+Cuando usamos una función sólo debemos escribir bien el nombre e ingresar correctamente los parámetros de la función, el cuerpo de la función ni lo vemos ni lo debemos modificar. A continuación se presenta un ejemplo de cómo usar la función `mean` para calcular un promedio.
+
+```{r}
+notas <- c(4.0, 1.3, 3.8, 2.0)  # Notas de un estudiante
+mean(notas)
+```
+
+
 ### Funciones sobre vectores
 
 En R podemos destacar las siguientes funciones básicas sobre vectores numéricos.
@@ -665,8 +670,6 @@ De las dos últimas líneas podemos destacar lo siguiente:
 
 1. __NO es necesario__ usar `na.rm = TRUE` para remover el `NA` dentro de las funciones `which.min` ni `which.max`.
 2. El valor mínimo 0 aparece en las posicione
-
-
 
 
 ### EJERCICIOS 
@@ -707,7 +710,6 @@ En R hay unas bases de datos incluidas, una de ellas es la base de datos llamada
 16. Autos que tengan 4 cilindros.
 
 17. Autos que pesen más de 2500 libras y tengan transmisión manual.
-
 
 
 ## Estructuras de control {#bucles}
