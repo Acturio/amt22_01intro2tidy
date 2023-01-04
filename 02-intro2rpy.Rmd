@@ -44,7 +44,7 @@ A continuación se presentan las características de estos objetos y la forma pa
 
 ### Operadores de asignación
 
-#### R 
+#### R {-}
 
 En R se pueden hacer asignación de varias formas, a continuación se presentan los operadores disponibles para tal fin.
 
@@ -68,7 +68,7 @@ age = 25 # No recomendado
 Aunque una asignación se puede hacer de tres formas diferentes, se recomienda sólo usar el símbolo `<-`.
 ```
 
-#### Python
+#### Python {-}
 
 A diferencia de R, en Python se realiza la asignación únicamente mediante el operador `=`
 
@@ -255,14 +255,24 @@ sexo[0:3]
 Las matrices son arreglos rectangulares de filas y columnas con información numérica, alfanumérica o lógica. Para construir una matriz se usa la función matrix( ). Por ejemplo, para crear una matriz de 4 filas y 5 columnas (de dimensión  4×5) con los primeros 20 números positivos se escribe el código siguiente en la consola.
 
 ``` {r}
-mimatriz <- matrix(data = 1:20, nrow = 4, ncol = 5, byrow = FALSE)
+# R
+mimatriz <- matrix(data = 1:20, nrow = 4, ncol = 5, byrow = TRUE)
 ```
-
-El argumento data de la función sirve para indicar los datos que se van a almacenar en la matriz, los argumentos nrow y ncol sirven para definir la dimensión de la matriz y por último el argumento byrow sirve para indicar si la información contenida en data se debe ingresar por filas o no. Para observar lo que quedó almacenado en el objeto mimatriz se escribe en la consola el nombre del objeto seguido de la tecla enter o intro.
+El argumento `data` de la función sirve para indicar los datos que se van a almacenar en la matriz, los argumentos `nrow` y `ncol` sirven para definir la dimensión de la matriz y por último el argumento `byrow` sirve para indicar si la información contenida en data se debe ingresar por filas o no. Para observar lo que quedó almacenado en el objeto mimatriz se escribe en la consola el nombre del objeto seguido de la tecla enter o intro.
 
 ``` {r}
+# R
 mimatriz
 ```
+Por otro lado, en python...
+
+```{python}
+# python
+mimatrix = np.array(range(1, 21)).reshape((4, 5))
+print(mimatrix)
+```
+Mediante la función `array` se crea un arreglo, cuyos elementos son una secuencia del [1, 21). La estructura de la matriz se indica mediante el atributo `reshape`, en donde se especifican 4 renglones y 5 columnas.
+
 
 ####  ¿Cómo extraer elementos de una matriz?
 
@@ -270,12 +280,13 @@ Al igual que en el caso de los vectores, para extraer elementos almacenados dent
 
 **Ejemplo**
 
+#### R {-}
+
 Si queremos extraer el valor almacenado en la fila 3 y columna 4 usamos el siguiente código.
 
 ``` {r}
 mimatriz[3, 4]
 ```
-
 Si queremos recuperar *toda* la fila 2 usamos el siguiente código.
 
 ``` {r}
@@ -289,67 +300,33 @@ Si queremos recuperar *toda* la columna 5 usamos el siguiente código.
 mimatriz[, 5]  # No se escribe nada antes de la coma
 ```
 
-Si queremos recuperar la matriz original sin las columnas 2 y 4 usamos el siguiente código.
 
-``` {r}
-mimatriz[, -c(2, 4)]  # Las columnas como vector
+#### Python {-}
+
+Si queremos extraer el valor almacenado en la fila 3 y columna 4 usamos el siguiente código.
+
+```{python}
+mimatrix[2, 3]
+```
+
+Si queremos recuperar *toda* la fila 2 usamos el siguiente código.
+
+```{python}
+mimatrix[1, :]  
 ```
 
 
-Si queremos recuperar la matriz original sin la fila 1 ni columna 3 usamos el siguiente código.
+Si queremos recuperar *toda* la columna 5 usamos el siguiente código.
 
-``` {r}
-mimatriz[-1, -3]  # Signo de menos para eliminar
-```
-
-###  Arreglos 
-
-Un arreglo es una matriz de varias dimensiones con información numérica, alfanumérica o lógica. Para construir una arreglo se usa la función array( ). Por ejemplo, para crear un arreglo de  3 × 4 × 2 con las primeras 24 letras minúsculas del alfabeto se escribe el siguiente código.
-
-``` {r}
-miarray <- array(data = letters[1:24], dim=c(3, 4, 2))
-```
-
-```{r echo=FALSE,fig.align='center', out.width='600pt', out.height='300pt'}
-knitr::include_graphics("img/02-intro2rpy/data-array.jpeg")
-```
-
-El argumento data de la función sirve para indicar los datos que se van a almacenar en el arreglo y el argumento dim sirve para indicar las dimensiones del arreglo. Para observar lo que quedó almacenado en el objeto miarray se escribe en la consola lo siguiente.
-
-``` {r}
-miarray
-```
-
-
-#### ¿Cómo extraer elementos de un arreglo?
-Para recuperar elementos almacenados en un arreglo se usan también corchetes, y dentro de los corchetes, las coordenadas del objeto de interés.
-
-
-**Ejemplo**
-Si queremos extraer la letra almacenada en la fila 1 y columna 3 de la segunda capa de miarray usamos el siguiente código.
-
-``` {r}
-miarray[1, 3, 2]  # El orden es importante
-```
-
-
-Si queremos extraer la segunda capa completa usamos el siguiente código.
-
-``` {r}
-miarray[,, 2]  # No se coloca nada en las primeras posiciones
-```
-
-Si queremos extraer la tercera columna de todas las capas usamos el siguiente código.
-
-``` {r}
-miarray[, 3,]  # No se coloca nada en las primeras posiciones
+```{python}
+mimatrix[:, 4]
 ```
 
 ### Data Frames  
 
 El marco de datos marco de datos o data frame es uno de los objetos más utilizados porque permite agrupar vectores con información de diferente tipo (numérica, alfanumérica o lógica) en un mismo objeto, la única restricción es que los vectores deben tener la misma longitud. Para crear un marco de datos se usa la función *data.frame( )*, como ejemplo vamos a crear un marco de datos con los vectores edad, deporte y sexo definidos anteriormente.
 
-
+#### R {-}
 ``` {r}
 mi_data_frame <- data.frame(edad, deporte, sexo) 
 ```
@@ -363,6 +340,23 @@ mi_data_frame
 
 De la salida anterior vemos que el marco de datos tiene 3 variables (columnas) cuyos nombres coinciden con los nombres de los vectores creados anteriormente, los números consecutivos al lado izquierdo son sólo de referencia y permiten identificar la información para cada persona en el conjunto de datos.
 
+
+#### Python {-}
+
+``` {python}
+import pandas as pd
+
+mi_data_frame = pd.DataFrame({"edad": edad, "deporte": deporte, "sexo": sexo}) 
+```
+
+Una vez creado el objeto mi_data_frame podemos ver el objeto escribiendo su nombre en la consola, a continuación se muestra lo que se obtiene.
+
+
+``` {python}
+mi_data_frame
+```
+
+De la salida anterior vemos que el marco de datos tiene 3 variables (columnas) cuyos nombres coinciden con los nombres de los vectores creados anteriormente, los números consecutivos al lado izquierdo son sólo de referencia y permiten identificar la información para cada persona en el conjunto de datos.
 
 **Ejercicios:**
 
@@ -381,7 +375,9 @@ Use funciones o procedimientos (varias líneas) de *R* para responder cada una d
       e) ¿En qué alcaldía trabaja?
 
 
-### Listas
+### Listas y Diccionarios
+
+#### Listas en R {-}
 
 Las listas son otro tipo de objeto muy usado para **almacenar objetos de diferente tipo.** La instrucción para crear una lista es *list( )*. A continuación vamos a crear una lista que contiene tres objetos: un vector con 5 números aleatorios llamado *mivector*, una matriz de dimensión  6×2 con los primeros doce números enteros positivos llamada matriz2 y el tercer objeto será el marco de datos *mi_data_frame* creado en el apartado anterior. Las instrucciones para crear la lista requerida se muestran a continuación.
 
@@ -440,10 +436,48 @@ class(milista[2])
 De lo anterior se observa claramente que cuando usamos $ o [[]] el resultado es el objeto almacenado, una matriz. Cuando usamos [] el resultado es una lista cuyo contenido es el objeto almacenado.
 ---
 
+#### Diccionarios en Python {-}
+
+Los diccionarios son la estructura de almacenamiento en *python* equivalente a las listas de *R*. El operador para crear una lista es `{ }`. A continuación vamos a crear una lista que contiene los mismos tres objetos que en el ejemplo con R.
+
+``` {python}
+import random
+import pprint
+
+mivector = np.random.uniform(0, 1, 5)
+
+matriz2 = np.array(range(1, 13)).reshape(2, 6)
+
+midiccionario = {"E1": mivector, "E2": matriz2, "E3": mi_data_frame}
+pprint.pprint(midiccionario)
+```
+
+#### ¿Cómo extraer elementos de un diccionario?
+
+Para recuperar los elementos almacenadas en un diccionario se usa el operador corchete `[ ]`. A continuación unos ejemplos para entender cómo extraer elementos de un diccionario.
+
+**Ejemplos**
+Si queremos la matriz almacenada con el nombre de E2 dentro del objeto *midiccionario* se puede usar el siguiente código.
+
+``` {python}
+midiccionario["E2"]
+```
+
+Es posible indicar la posición del objeto en lugar del nombre, para eso se usa el método `.values()` y posteriormente se introduce en una lista para ser extraído mediante corchete y posición. 
+
+``` {python}
+list(midiccionario.values())[1]
+```
+
+
+
+
+
+
 
 ### Ejercicios
 
-Use funciones o procedimientos (varias líneas) de *R* para responder cada una de las siguientes preguntas.
+Use funciones o procedimientos (varias líneas) para responder cada una de las siguientes preguntas.
 
 1. Construya un vector con la primeras 20 letras MAYÚSCULAS usando la función LETTERS.
 
@@ -632,80 +666,6 @@ De las dos últimas líneas podemos destacar lo siguiente:
 1. __NO es necesario__ usar `na.rm = TRUE` para remover el `NA` dentro de las funciones `which.min` ni `which.max`.
 2. El valor mínimo 0 aparece en las posicione
 
-
-### Función `rep`
-
-En R podemos crear repeticiones usando la función `rep`, la estructura de esta función es:
-
-```{r, eval=F}
-rep(x, times=1, length.out=NA, each=1)
-```
-
-Los argumentos de esta función son:
-
-- `x`: vector con los elementos a repetir.
-- `times`: número de veces que el vector `x` se debe repetir.
-- `length.out`: longitud deseada para el vector resultante.
-- `each`: número de veces que cada elemento de `x` se debe repetir.
-
-#### Ejemplo {-}
-Construya las siguientes repeticiones usando la función `rep`, no lo haga ingresando número por número.
-
-- 1 2 3 4 1 2 3 4
-- 1 1 2 2 3 3 4 4
-- 1 1 2 3 3 4
-- 1 1 2 2 3 3 4 4
-
-La clave para construir una repetición es, descubrir la semilla o elemento que se repite. Las instrucciones para obtener las repeticiones anteriores se muestra a continuación.
-
-```{r}
-rep(x=1:4, times=2)
-rep(x=1:4, times=c(2,2,2,2))
-rep(x=1:4, times=c(2,1,2,1))
-rep(x=1:4, each=2)
-```
-
-### Función `seq`
-En R podemos crear secuencias de números de una forma sencilla usando la función `seq`, la estructura de esta función es:
-
-```{r, eval=F}
-seq(from=1, to=1, by, length.out)
-```
-
-Los argumentos de esta función son:
-
-- `from`: valor de inicio de la secuencia.
-- `to`: valor de fin de la secuencia, no siempre se alcanza.
-- `by`: incremento de la secuencia.
-- `length.out`: longitud deseado de la secuencia.
-
-#### Ejemplo {-}
-Construya las siguientes tres secuencias usando la función `seq`.
-
-- Once valores igualmente espaciados desde 0 hasta 1.
-- Una secuencia de dos en dos comenzando en 1.
-- Una secuencia desde 1 con un salto de $\pi$ y sin pasar del número 9.
-
-El código necesario para obtener las secuencias se muestra a continuación.
-
-```{r}
-seq(from=0, to=1, length.out = 11)
-seq(from=1, to=9, by=2)  # concuerda con final
-seq(from=1, to=9, by=pi) # se mantiene por debajo del final
-```
-
-```{block2, type='rmdnote'}
-En R existe el operador binario `:` que sirve para construir secuencias de uno en uno fácilmente.
-```
-
-Revise los siguientes ejemplos para entender el funcionamiento del operador `:`.
-
-```{r}
-2:8
-3:-5
-pi:6  # secuencia real
-6:pi  # secuencia entera
-```
 
 
 
